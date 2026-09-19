@@ -1,1 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>SkillBridge</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b1120;
+      color: white;
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 20px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #1e293b;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 90px 20px 70px;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      color: #b6c2d9;
+      max-width: 650px;
+      margin: auto;
+      font-size: 18px;
+    }
+
+    .section {
+      padding: 60px 8%;
+      text-align: center;
+    }
+
+    .section h2 {
+      font-size: 32px;
+      margin-bottom: 35px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .card {
+      background: #111827;
+      border: 1px solid #263247;
+      border-radius: 16px;
+      padding: 30px;
+      text-align: left;
+    }
+
+    .card h3 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: #aebbd0;
+      margin-bottom: 22px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 11px 18px;
+      border-radius: 8px;
+      background: #2563eb;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .button:hover {
+      opacity: 0.85;
+    }
+
+    .services {
+      background: #111827;
+      margin: 30px 8%;
+      padding: 50px 20px;
+      border-radius: 18px;
+      text-align: center;
+    }
+
+    .services p {
+      color: #aebbd0;
+      margin: 15px auto 25px;
+      max-width: 600px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 35px 20px;
+      color: #7f8da5;
+      border-top: 1px solid #1e293b;
+      margin-top: 50px;
+    }
+
+    @media (max-width: 800px) {
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 38px;
+      }
+
+      header {
+        padding: 18px 5%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">SkillBridge</div>
+
+    <nav>
+      <a href="#tutorials">Tutorials</a>
+      <a href="#services">Services</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Build Skills. Create Opportunities.</h1>
+    <p>
+      SkillBridge helps you learn useful digital skills and turn those skills
+      into real opportunities.
+    </p>
+  </section>
+
+  <section class="section" id="tutorials">
+    <h2>Learn Useful Skills</h2>
+
+    <div class="cards">
+
+      <div class="card">
+        <h3>Edit Video</h3>
+        <p>
+          Learn the basics of video editing and start creating better videos.
+        </p>
+
+        <a
+          class="button"
+          href="https://youtu.be/y7Ci_H9bYEk"
+          target="_blank"
+          rel="noopener noreferrer">
+          Watch Tutorial
+        </a>
+      </div>
+
+      <div class="card">
+        <h3>Create Thumbnail</h3>
+        <p>
+          Learn how to create attractive thumbnails that make people want to
+          click.
+        </p>
+
+        <a class="button" href="#" onclick="comingSoon(event)">
+          Watch Tutorial
+        </a>
+      </div>
+
+      <div class="card">
+        <h3>Format Data</h3>
+        <p>
+          Learn useful data-formatting skills that can help with real-world
+          digital work.
+        </p>
+
+        <a class="button" href="#" onclick="comingSoon(event)">
+          Watch Tutorial
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="services" id="services">
+    <h2>Services</h2>
+
+    <p>
+      Our services are currently under construction.
+      They will be available soon.
+    </p>
+
+    <a class="button" href="#" onclick="comingSoon(event)">
+      Coming Soon
+    </a>
+  </section>
+
+  <footer>
+    © 2026 SkillBridge. All rights reserved.
+  </footer>
+
+  <script>
+    function comingSoon(event) {
+      event.preventDefault();
+
+      alert(
+        "This part of SkillBridge is currently under construction. It will be ready soon!"
+      );
+    }
+  </script>
+
+</body>
+  </html>
