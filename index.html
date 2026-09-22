@@ -2,16 +2,50 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>SkillBridge - Learn Skills & Use Free Tools</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <meta
     name="description"
-    content="SkillBridge helps you learn useful digital skills and use simple free tools for images, text, and data."
+    content="SkillBridge offers free digital tutorials and practical browser-based tools for images, text, and data."
+  >
+
+  <meta
+    name="theme-color"
+    content="#0b1120"
+  >
+
+  <meta
+    property="og:title"
+    content="SkillBridge - Learn Skills & Use Free Tools"
+  >
+
+  <meta
+    property="og:description"
+    content="Learn useful digital skills and use simple free tools directly in your browser."
+  >
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <title>SkillBridge - Learn Skills & Use Free Tools</title>
+
+  <link
+    rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%232563eb'/%3E%3Ctext x='50' y='67' font-size='58' text-anchor='middle' fill='white' font-family='Arial'%3ES%3C/text%3E%3C/svg%3E"
   >
 
   <style>
+
+    /* =========================
+       RESET
+    ========================= */
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -20,6 +54,7 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 90px;
     }
 
     body {
@@ -29,212 +64,406 @@
       line-height: 1.6;
     }
 
+    a {
+      color: inherit;
+    }
+
+
+    /* =========================
+       HEADER
+    ========================= */
+
     header {
-      padding: 20px 8%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      padding: 18px 8%;
+
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      background: rgba(11, 17, 32, 0.96);
       border-bottom: 1px solid #1e293b;
-      position: sticky;
-      top: 0;
-      background: #0b1120;
-      z-index: 100;
+      backdrop-filter: blur(10px);
     }
 
     .logo {
       font-size: 25px;
       font-weight: bold;
+      letter-spacing: -0.5px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
     }
 
     nav a {
-      color: white;
+      color: #dbe5f5;
       text-decoration: none;
-      margin-left: 20px;
+      font-size: 15px;
+      transition: opacity 0.2s ease;
     }
 
     nav a:hover {
-      opacity: 0.75;
+      opacity: 0.7;
     }
+
+
+    /* =========================
+       HERO
+    ========================= */
 
     .hero {
       text-align: center;
-      padding: 90px 20px 70px;
+      padding: 105px 20px 85px;
     }
 
     .hero h1 {
-      font-size: 48px;
-      margin-bottom: 15px;
+      max-width: 850px;
+      margin: 0 auto 18px;
+
+      font-size: 52px;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
     }
 
     .hero p {
+      max-width: 680px;
+      margin: 0 auto;
+
       color: #b6c2d9;
-      max-width: 650px;
-      margin: auto;
       font-size: 18px;
     }
 
+    .hero-buttons {
+      margin-top: 30px;
+    }
+
+
+    /* =========================
+       BUTTONS
+    ========================= */
+
+    .button {
+      display: inline-block;
+
+      padding: 11px 18px;
+
+      border: none;
+      border-radius: 9px;
+
+      background: #2563eb;
+      color: white;
+
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 15px;
+
+      cursor: pointer;
+
+      transition:
+        transform 0.15s ease,
+        opacity 0.15s ease,
+        background 0.15s ease;
+    }
+
+    .button:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .button:active {
+      transform: translateY(0);
+    }
+
+    .button.secondary {
+      background: #1e293b;
+      border: 1px solid #334155;
+    }
+
+    .button.danger {
+      background: #3f1d2e;
+      border: 1px solid #6b2945;
+    }
+
+
+    /* =========================
+       SECTIONS
+    ========================= */
+
     .section {
-      padding: 60px 8%;
+      padding: 70px 8%;
       text-align: center;
     }
 
     .section h2 {
-      font-size: 32px;
-      margin-bottom: 35px;
+      margin-bottom: 12px;
+
+      font-size: 34px;
+      line-height: 1.2;
     }
 
     .section-intro {
-      color: #aebbd0;
-      margin: -15px auto 35px;
       max-width: 650px;
+
+      margin: 0 auto 38px;
+
+      color: #aebbd0;
     }
+
+
+    /* =========================
+       CARDS
+    ========================= */
 
     .cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
+      gap: 24px;
     }
 
     .card {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
       background: #111827;
       border: 1px solid #263247;
-      border-radius: 16px;
+      border-radius: 17px;
+
       padding: 30px;
+
       text-align: left;
+
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: #3b82f6;
     }
 
     .card h3 {
-      font-size: 22px;
-      margin-bottom: 12px;
+      margin-bottom: 11px;
+
+      font-size: 21px;
     }
 
     .card p {
+      flex: 1;
+
+      margin-bottom: 23px;
+
       color: #aebbd0;
-      margin-bottom: 22px;
     }
 
-    .button {
-      display: inline-block;
-      padding: 11px 18px;
-      border-radius: 8px;
-      background: #2563eb;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      border: none;
-      cursor: pointer;
-      font-size: 15px;
-    }
 
-    .button:hover {
-      opacity: 0.85;
-    }
+    /* =========================
+       TOOLS
+    ========================= */
 
     .tools-area {
-      padding-top: 30px;
+      padding-top: 55px;
     }
 
     .tool-box {
+      max-width: 900px;
+
+      margin: 35px auto;
+      padding: 38px;
+
       background: #111827;
       border: 1px solid #263247;
       border-radius: 18px;
-      padding: 35px;
-      margin: 35px auto;
-      max-width: 900px;
+
       text-align: center;
     }
 
     .tool-box h3 {
-      font-size: 26px;
       margin-bottom: 10px;
+
+      font-size: 27px;
     }
 
     .tool-box > p {
+      max-width: 650px;
+
+      margin: 0 auto 27px;
+
       color: #aebbd0;
-      margin-bottom: 25px;
     }
 
     .tool-input {
+      max-width: 100%;
+      padding: 10px 12px;
+
       background: #0b1120;
       color: white;
+
       border: 1px solid #334155;
       border-radius: 8px;
-      padding: 10px;
-      margin: 5px;
+
+      font-size: 15px;
+    }
+
+    .tool-input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #3b82f6;
     }
 
     .tool-label {
-      color: #d8e0ed;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+
       margin: 5px;
-      display: inline-block;
+
+      color: #d8e0ed;
     }
 
     .tool-buttons {
-      margin-top: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 9px;
+
+      margin-top: 17px;
     }
 
-    textarea {
-      width: 100%;
-      min-height: 180px;
-      resize: vertical;
-      background: #0b1120;
-      color: white;
+    .tool-note {
+      margin-top: 15px !important;
+
+      font-size: 13px;
+      color: #7f8da5 !important;
+    }
+
+    .back-link {
+      display: inline-block;
+
+      margin-top: 25px;
+
+      color: #8fb7ff;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+
+    /* =========================
+       IMAGE TOOL
+    ========================= */
+
+    .file-wrapper {
+      margin: 15px 0 22px;
+    }
+
+    .file-label {
+      display: inline-block;
+
+      padding: 11px 16px;
+
+      background: #1e293b;
       border: 1px solid #334155;
-      border-radius: 10px;
-      padding: 15px;
-      font-family: Arial, sans-serif;
-      font-size: 15px;
-      margin-bottom: 15px;
+      border-radius: 9px;
+
+      color: white;
+      font-weight: bold;
+
+      cursor: pointer;
     }
 
-    .result-box {
-      margin-top: 20px;
-      padding: 15px;
-      background: #0b1120;
-      border: 1px solid #263247;
-      border-radius: 10px;
-      overflow-x: auto;
+    .file-label:hover {
+      background: #263247;
+    }
+
+    #imageInput {
+      display: none;
+    }
+
+    .dimensions {
+      margin-top: 10px;
+    }
+
+    .preview-area {
+      margin-top: 25px;
     }
 
     canvas {
       max-width: 100%;
       height: auto;
-      margin-top: 20px;
-      border-radius: 8px;
+
+      border-radius: 10px;
+      border: 1px solid #334155;
     }
 
-    .services {
-      background: #111827;
-      margin: 30px 8%;
-      padding: 50px 20px;
-      border-radius: 18px;
-      text-align: center;
+
+    /* =========================
+       TEXTAREA
+    ========================= */
+
+    textarea {
+      width: 100%;
+      min-height: 190px;
+
+      padding: 15px;
+
+      resize: vertical;
+
+      background: #0b1120;
+      color: white;
+
+      border: 1px solid #334155;
+      border-radius: 10px;
+
+      font-family: Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.5;
     }
 
-    .services p {
-      color: #aebbd0;
-      margin: 15px auto 25px;
-      max-width: 600px;
-    }
 
-    footer {
-      text-align: center;
-      padding: 35px 20px;
-      color: #7f8da5;
-      border-top: 1px solid #1e293b;
-      margin-top: 50px;
+    /* =========================
+       DATA RESULT
+    ========================= */
+
+    .result-box {
+      display: none;
+
+      width: 100%;
+
+      margin-top: 22px;
+      padding: 15px;
+
+      background: #0b1120;
+      border: 1px solid #263247;
+      border-radius: 10px;
+
+      overflow-x: auto;
+
+      text-align: left;
     }
 
     table {
       width: 100%;
+
       border-collapse: collapse;
-      margin-top: 10px;
     }
 
     th,
     td {
-      border: 1px solid #334155;
       padding: 10px;
+
+      border: 1px solid #334155;
+
       text-align: left;
       white-space: nowrap;
     }
@@ -243,66 +472,205 @@
       background: #1e293b;
     }
 
+
+    /* =========================
+       SERVICES
+    ========================= */
+
+    .services {
+      max-width: 1100px;
+
+      margin: 50px auto;
+
+      padding: 60px 25px;
+
+      background: #111827;
+      border: 1px solid #263247;
+      border-radius: 18px;
+
+      text-align: center;
+    }
+
+    .services h2 {
+      margin-bottom: 10px;
+    }
+
+    .services p {
+      max-width: 600px;
+
+      margin: 15px auto 27px;
+
+      color: #aebbd0;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      margin-top: 60px;
+      padding: 35px 20px;
+
+      border-top: 1px solid #1e293b;
+
+      text-align: center;
+
+      color: #7f8da5;
+      font-size: 14px;
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================= */
+
     @media (max-width: 800px) {
-      .cards {
-        grid-template-columns: 1fr;
+
+      header {
+        padding: 16px 5%;
+      }
+
+      .logo {
+        font-size: 21px;
+      }
+
+      nav {
+        gap: 10px;
+      }
+
+      nav a {
+        font-size: 13px;
+      }
+
+      .hero {
+        padding: 75px 18px 65px;
       }
 
       .hero h1 {
         font-size: 38px;
       }
 
-      header {
-        padding: 18px 5%;
+      .hero p {
+        font-size: 16px;
       }
 
-      nav a {
-        margin-left: 10px;
+      .section {
+        padding: 55px 5%;
+      }
+
+      .section h2 {
+        font-size: 29px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
       }
 
       .tool-box {
-        padding: 25px 15px;
+        margin: 25px 5%;
+        padding: 28px 17px;
+      }
+
+      .tool-label {
+        display: flex;
+        justify-content: center;
+        margin: 9px 0;
+      }
+
+      .tool-input[type="number"] {
+        width: 130px;
+      }
+
+      .button {
+        padding: 10px 15px;
       }
     }
+
   </style>
 </head>
 
+
 <body>
 
+  <!-- =========================
+       HEADER
+  ========================== -->
+
   <header>
-    <div class="logo">SkillBridge</div>
+
+    <div class="logo">
+      SkillBridge
+    </div>
 
     <nav>
       <a href="#tutorials">Tutorials</a>
       <a href="#tools">Free Tools</a>
       <a href="#services">Services</a>
     </nav>
+
   </header>
 
 
-  <!-- HERO -->
+  <!-- =========================
+       HERO
+  ========================== -->
+
   <section class="hero">
-    <h1>Build Skills. Create Opportunities.</h1>
+
+    <h1>
+      Build Skills. Create Opportunities.
+    </h1>
 
     <p>
-      SkillBridge helps you learn useful digital skills and turn those skills
-      into real opportunities.
+      Learn useful digital skills and use simple practical tools
+      directly in your browser.
     </p>
+
+    <div class="hero-buttons">
+
+      <a
+        class="button"
+        href="#tools">
+        Start Using Free Tools
+      </a>
+
+    </div>
+
   </section>
 
 
-  <!-- TUTORIALS -->
-  <section class="section" id="tutorials">
+  <!-- =========================
+       TUTORIALS
+  ========================== -->
 
-    <h2>Learn Useful Skills</h2>
+  <section
+    class="section"
+    id="tutorials">
+
+    <h2>
+      Learn Useful Skills
+    </h2>
+
+    <p class="section-intro">
+      Learn practical digital skills through simple tutorials.
+    </p>
+
 
     <div class="cards">
 
+
+      <!-- VIDEO EDITING -->
+
       <div class="card">
-        <h3>Edit Video</h3>
+
+        <h3>
+          Edit Video
+        </h3>
 
         <p>
-          Learn the basics of video editing and start creating better videos.
+          Learn the basics of video editing and start creating
+          better videos.
         </p>
 
         <a
@@ -312,15 +680,21 @@
           rel="noopener noreferrer">
           Watch Tutorial
         </a>
+
       </div>
 
 
+      <!-- THUMBNAILS -->
+
       <div class="card">
-        <h3>Create Thumbnail</h3>
+
+        <h3>
+          Create Thumbnail
+        </h3>
 
         <p>
-          Learn how to create attractive thumbnails that make people want to
-          click.
+          Learn how to create attractive thumbnails that make
+          people want to click.
         </p>
 
         <a
@@ -330,15 +704,21 @@
           rel="noopener noreferrer">
           Watch Tutorial
         </a>
+
       </div>
 
 
+      <!-- DATA -->
+
       <div class="card">
-        <h3>Format Data</h3>
+
+        <h3>
+          Format Data
+        </h3>
 
         <p>
-          Learn useful data-formatting skills that can help with real-world
-          digital work.
+          Learn useful data-formatting skills that can help
+          with real-world digital work.
         </p>
 
         <a
@@ -348,105 +728,179 @@
           rel="noopener noreferrer">
           Watch Tutorial
         </a>
+
       </div>
 
     </div>
+
   </section>
 
 
-  <!-- FREE TOOLS -->
-  <section class="section tools-area" id="tools">
+  <!-- =========================
+       FREE TOOLS
+  ========================== -->
 
-    <h2>Free Tools</h2>
+  <section
+    class="section tools-area"
+    id="tools">
+
+    <h2>
+      Free Tools
+    </h2>
 
     <p class="section-intro">
       Simple tools you can use directly on SkillBridge.
+      No account required.
     </p>
 
 
     <div class="cards">
 
+
+      <!-- IMAGE TOOL CARD -->
+
       <div class="card">
-        <h3>Image / Thumbnail Resizer</h3>
+
+        <h3>
+          Image / Thumbnail Resizer
+        </h3>
 
         <p>
-          Resize your images quickly and easily.
+          Resize images and thumbnails directly in your browser.
         </p>
 
-        <a class="button" href="#image-resizer">
+        <a
+          class="button"
+          href="#image-resizer">
           Open Tool
         </a>
+
       </div>
 
 
+      <!-- TEXT TOOL CARD -->
+
       <div class="card">
-        <h3>Text Formatter</h3>
+
+        <h3>
+          Text Formatter
+        </h3>
 
         <p>
-          Clean and format your text in seconds.
+          Clean, transform and organize text in seconds.
         </p>
 
-        <a class="button" href="#text-formatter">
+        <a
+          class="button"
+          href="#text-formatter">
           Open Tool
         </a>
+
       </div>
 
 
+      <!-- DATA TOOL CARD -->
+
       <div class="card">
-        <h3>Data Formatter</h3>
+
+        <h3>
+          Data Formatter
+        </h3>
 
         <p>
-          Clean and organize simple data.
+          Turn simple comma-separated data into a clean table.
         </p>
 
-        <a class="button" href="#data-formatter">
+        <a
+          class="button"
+          href="#data-formatter">
           Open Tool
         </a>
+
       </div>
 
     </div>
+
   </section>
 
 
-  <!-- IMAGE RESIZER -->
-  <section class="tool-box" id="image-resizer">
+  <!-- =========================
+       IMAGE RESIZER
+  ========================== -->
 
-    <h3>Image / Thumbnail Resizer</h3>
+  <section
+    class="tool-box"
+    id="image-resizer">
+
+    <h3>
+      Image / Thumbnail Resizer
+    </h3>
 
     <p>
-      Upload an image, choose the dimensions, resize it, and download it.
+      Upload an image, choose the dimensions, resize it,
+      and download the result.
     </p>
 
-    <input
-      class="tool-input"
-      type="file"
-      id="imageInput"
-      accept="image/*"
-    >
 
-    <br><br>
+    <div class="file-wrapper">
+
+      <label
+        class="file-label"
+        for="imageInput">
+        Choose Image
+      </label>
+
+      <input
+        type="file"
+        id="imageInput"
+        accept="image/*">
+
+    </div>
+
+
+    <div class="dimensions">
+
+      <label class="tool-label">
+
+        Width:
+
+        <input
+          class="tool-input"
+          type="number"
+          id="imageWidth"
+          placeholder="Width"
+          min="1">
+
+      </label>
+
+
+      <label class="tool-label">
+
+        Height:
+
+        <input
+          class="tool-input"
+          type="number"
+          id="imageHeight"
+          placeholder="Height"
+          min="1">
+
+      </label>
+
+    </div>
+
 
     <label class="tool-label">
-      Width:
+
       <input
-        class="tool-input"
-        type="number"
-        id="imageWidth"
-        placeholder="Width"
-        min="1"
-      >
+        type="checkbox"
+        id="keepAspect"
+        checked>
+
+      Keep aspect ratio
+
     </label>
 
-    <label class="tool-label">
-      Height:
-      <input
-        class="tool-input"
-        type="number"
-        id="imageHeight"
-        placeholder="Height"
-        min="1"
-      >
-    </label>
 
     <div class="tool-buttons">
 
@@ -457,35 +911,75 @@
         Resize Image
       </button>
 
+      <button
+        class="button secondary"
+        type="button"
+        onclick="clearImageTool()">
+        Clear
+      </button>
+
     </div>
 
-    <canvas id="imageCanvas" style="display: none;"></canvas>
 
-    <br>
+    <div
+      class="preview-area"
+      id="imagePreviewArea"
+      style="display: none;">
+
+      <canvas
+        id="imageCanvas">
+      </canvas>
+
+      <br><br>
+
+      <a
+        id="downloadImage"
+        class="button"
+        style="display: none;"
+        download="skillbridge-resized-image.png">
+        Download Image
+      </a>
+
+    </div>
+
+
+    <p class="tool-note">
+      Your image is processed in your browser and is not uploaded
+      to SkillBridge.
+    </p>
+
 
     <a
-      id="downloadImage"
-      class="button"
-      style="display: none;"
-      download="skillbridge-resized-image.png">
-      Download Image
+      class="back-link"
+      href="#tools">
+      ← Back to Free Tools
     </a>
 
   </section>
 
 
-  <!-- TEXT FORMATTER -->
-  <section class="tool-box" id="text-formatter">
+  <!-- =========================
+       TEXT FORMATTER
+  ========================== -->
 
-    <h3>Text Formatter</h3>
+  <section
+    class="tool-box"
+    id="text-formatter">
+
+    <h3>
+      Text Formatter
+    </h3>
 
     <p>
       Paste your text below and use the tools to clean and format it.
     </p>
 
+
     <textarea
       id="textInput"
-      placeholder="Paste your text here..."></textarea>
+      placeholder="Paste your text here...">
+    </textarea>
+
 
     <div class="tool-buttons">
 
@@ -524,26 +1018,55 @@
         Copy
       </button>
 
+      <button
+        class="button secondary"
+        type="button"
+        onclick="clearText()">
+        Clear
+      </button>
+
     </div>
+
+
+    <p class="tool-note">
+      Text is processed directly in your browser.
+    </p>
+
+
+    <a
+      class="back-link"
+      href="#tools">
+      ← Back to Free Tools
+    </a>
 
   </section>
 
 
-  <!-- DATA FORMATTER -->
-  <section class="tool-box" id="data-formatter">
+  <!-- =========================
+       DATA FORMATTER
+  ========================== -->
 
-    <h3>Data Formatter</h3>
+  <section
+    class="tool-box"
+    id="data-formatter">
+
+    <h3>
+      Data Formatter
+    </h3>
 
     <p>
       Paste comma-separated data below to turn it into a clean table.
     </p>
+
 
     <textarea
       id="dataInput"
       placeholder="Example:
 Name,Age,Country
 Ali,18,Saudi Arabia
-Ahmed,20,Pakistan"></textarea>
+Ahmed,20,Pakistan">
+    </textarea>
+
 
     <div class="tool-buttons">
 
@@ -561,25 +1084,51 @@ Ahmed,20,Pakistan"></textarea>
         Download CSV
       </button>
 
+      <button
+        class="button secondary"
+        type="button"
+        onclick="clearData()">
+        Clear
+      </button>
+
     </div>
+
 
     <div
       class="result-box"
-      id="dataResult"
-      style="display: none;">
+      id="dataResult">
     </div>
+
+
+    <p class="tool-note">
+      Your data is processed directly in your browser.
+    </p>
+
+
+    <a
+      class="back-link"
+      href="#tools">
+      ← Back to Free Tools
+    </a>
 
   </section>
 
 
-  <!-- SERVICES -->
-  <section class="services" id="services">
+  <!-- =========================
+       SERVICES
+  ========================== -->
 
-    <h2>Services</h2>
+  <section
+    class="services"
+    id="services">
+
+    <h2>
+      Services
+    </h2>
 
     <p>
       Our services are currently under construction.
-      They will be available soon.
+      New features and services will be available soon.
     </p>
 
     <a
@@ -592,17 +1141,27 @@ Ahmed,20,Pakistan"></textarea>
   </section>
 
 
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
   <footer>
+
     © 2026 SkillBridge. All rights reserved.
+
   </footer>
 
 
-  <!-- JAVASCRIPT -->
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
   <script>
 
-    /* -----------------------------
-       COMING SOON
-    ----------------------------- */
+
+    /* =========================
+       SERVICES
+    ========================== */
 
     function comingSoon(event) {
 
@@ -611,50 +1170,136 @@ Ahmed,20,Pakistan"></textarea>
       alert(
         "This part of SkillBridge is currently under construction. It will be ready soon!"
       );
+
     }
 
 
-    /* -----------------------------
-       IMAGE / THUMBNAIL RESIZER
-    ----------------------------- */
+    /* =========================
+       IMAGE RESIZER
+    ========================== */
+
+    const imageInput =
+      document.getElementById("imageInput");
+
+    const imageWidth =
+      document.getElementById("imageWidth");
+
+    const imageHeight =
+      document.getElementById("imageHeight");
+
+    const keepAspect =
+      document.getElementById("keepAspect");
+
+
+    imageInput.addEventListener("change", function () {
+
+      if (!imageInput.files.length) {
+        return;
+      }
+
+      const file = imageInput.files[0];
+
+      const image = new Image();
+
+      image.onload = function () {
+
+        imageWidth.value = image.width;
+        imageHeight.value = image.height;
+
+        imageInput.dataset.originalWidth = image.width;
+        imageInput.dataset.originalHeight = image.height;
+
+      };
+
+      image.src = URL.createObjectURL(file);
+
+    });
+
+
+    imageWidth.addEventListener("input", function () {
+
+      if (!keepAspect.checked) {
+        return;
+      }
+
+      const originalWidth =
+        parseInt(imageInput.dataset.originalWidth);
+
+      const originalHeight =
+        parseInt(imageInput.dataset.originalHeight);
+
+      const width =
+        parseInt(imageWidth.value);
+
+      if (!originalWidth || !originalHeight || !width) {
+        return;
+      }
+
+      imageHeight.value =
+        Math.round(
+          width * originalHeight / originalWidth
+        );
+
+    });
+
 
     function resizeImage() {
 
-      const input = document.getElementById("imageInput");
-      const widthInput = document.getElementById("imageWidth");
-      const heightInput = document.getElementById("imageHeight");
-      const canvas = document.getElementById("imageCanvas");
-      const download = document.getElementById("downloadImage");
-
-      if (!input.files || !input.files[0]) {
+      if (!imageInput.files.length) {
 
         alert("Please choose an image first.");
 
         return;
       }
 
-      const width = parseInt(widthInput.value);
-      const height = parseInt(heightInput.value);
 
-      if (!width || !height || width < 1 || height < 1) {
+      const width =
+        parseInt(imageWidth.value);
+
+      const height =
+        parseInt(imageHeight.value);
+
+
+      if (
+        !width ||
+        !height ||
+        width < 1 ||
+        height < 1
+      ) {
 
         alert("Please enter a valid width and height.");
 
         return;
       }
 
-      const file = input.files[0];
 
-      const image = new Image();
+      const file =
+        imageInput.files[0];
+
+      const image =
+        new Image();
+
 
       image.onload = function () {
+
+        const canvas =
+          document.getElementById("imageCanvas");
+
+        const context =
+          canvas.getContext("2d");
+
 
         canvas.width = width;
         canvas.height = height;
 
-        const context = canvas.getContext("2d");
 
-        context.clearRect(0, 0, width, height);
+        context.clearRect(
+          0,
+          0,
+          width,
+          height
+        );
+
 
         context.drawImage(
           image,
@@ -664,162 +1309,351 @@ Ahmed,20,Pakistan"></textarea>
           height
         );
 
-        canvas.style.display = "block";
 
-        canvas.toBlob(function (blob) {
+        document.getElementById(
+          "imagePreviewArea"
+        ).style.display = "block";
 
-          const url = URL.createObjectURL(blob);
 
-          download.href = url;
+        canvas.toBlob(
+          function (blob) {
 
-          download.style.display = "inline-block";
+            if (!blob) {
 
-        }, "image/png");
+              alert(
+                "Something went wrong while creating the image."
+              );
+
+              return;
+            }
+
+
+            const url =
+              URL.createObjectURL(blob);
+
+
+            const download =
+              document.getElementById(
+                "downloadImage"
+              );
+
+
+            download.href = url;
+
+            download.style.display =
+              "inline-block";
+
+          },
+          "image/png"
+        );
+
       };
 
-      image.src = URL.createObjectURL(file);
+
+      image.onerror = function () {
+
+        alert(
+          "The selected file could not be loaded as an image."
+        );
+
+      };
+
+
+      image.src =
+        URL.createObjectURL(file);
+
     }
 
 
-    /* -----------------------------
+    function clearImageTool() {
+
+      imageInput.value = "";
+
+      imageInput.removeAttribute(
+        "data-original-width"
+      );
+
+      imageInput.removeAttribute(
+        "data-original-height"
+      );
+
+      imageWidth.value = "";
+
+      imageHeight.value = "";
+
+      document.getElementById(
+        "imagePreviewArea"
+      ).style.display = "none";
+
+
+      const canvas =
+        document.getElementById(
+          "imageCanvas"
+        );
+
+
+      const context =
+        canvas.getContext("2d");
+
+
+      context.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
+
+
+      const download =
+        document.getElementById(
+          "downloadImage"
+        );
+
+
+      download.style.display = "none";
+
+      download.removeAttribute("href");
+
+    }
+
+
+    /* =========================
        TEXT FORMATTER
-    ----------------------------- */
+    ========================== */
 
     function formatUppercase() {
 
-      const text = document.getElementById("textInput");
+      const text =
+        document.getElementById(
+          "textInput"
+        );
 
-      text.value = text.value.toUpperCase();
+      text.value =
+        text.value.toUpperCase();
+
     }
 
 
     function formatLowercase() {
 
-      const text = document.getElementById("textInput");
+      const text =
+        document.getElementById(
+          "textInput"
+        );
 
-      text.value = text.value.toLowerCase();
+      text.value =
+        text.value.toLowerCase();
+
     }
 
 
     function removeExtraSpaces() {
 
-      const text = document.getElementById("textInput");
+      const text =
+        document.getElementById(
+          "textInput"
+        );
 
-      text.value = text.value
-        .replace(/[ \t]+/g, " ")
-        .replace(/\n\s+/g, "\n")
-        .trim();
+
+      text.value =
+        text.value
+          .replace(/[ \t]+/g, " ")
+          .replace(/\n[ \t]+/g, "\n")
+          .replace(/[ \t]+\n/g, "\n")
+          .trim();
+
     }
 
 
     function removeDuplicateLines() {
 
-      const text = document.getElementById("textInput");
+      const text =
+        document.getElementById(
+          "textInput"
+        );
 
-      const lines = text.value
-        .split("\n")
-        .map(line => line.trim())
-        .filter(line => line !== "");
 
-      const uniqueLines = [...new Set(lines)];
+      const lines =
+        text.value
+          .split("\n")
+          .map(line => line.trim())
+          .filter(line => line !== "");
 
-      text.value = uniqueLines.join("\n");
+
+      const uniqueLines =
+        [...new Set(lines)];
+
+
+      text.value =
+        uniqueLines.join("\n");
+
     }
 
 
     function copyText() {
 
-      const text = document.getElementById("textInput");
+      const text =
+        document.getElementById(
+          "textInput"
+        );
+
 
       if (!text.value.trim()) {
 
-        alert("There is no text to copy.");
+        alert(
+          "There is no text to copy."
+        );
 
         return;
       }
 
-      navigator.clipboard.writeText(text.value)
-        .then(function () {
 
-          alert("Text copied!");
+      navigator.clipboard.writeText(
+        text.value
+      )
+      .then(function () {
 
-        })
-        .catch(function () {
+        alert("Text copied!");
 
-          text.select();
+      })
+      .catch(function () {
 
-          document.execCommand("copy");
+        text.select();
 
-          alert("Text copied!");
-        });
+        document.execCommand("copy");
+
+        alert("Text copied!");
+
+      });
+
     }
 
 
-    /* -----------------------------
+    function clearText() {
+
+      document.getElementById(
+        "textInput"
+      ).value = "";
+
+    }
+
+
+    /* =========================
        DATA FORMATTER
-    ----------------------------- */
+    ========================== */
 
     let currentData = [];
 
 
+    function escapeHTML(value) {
+
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+    }
+
+
     function formatData() {
 
-      const input = document.getElementById("dataInput");
-      const result = document.getElementById("dataResult");
+      const input =
+        document.getElementById(
+          "dataInput"
+        );
 
-      const text = input.value.trim();
+      const result =
+        document.getElementById(
+          "dataResult"
+        );
+
+
+      const text =
+        input.value.trim();
+
 
       if (!text) {
 
-        alert("Please paste some data first.");
+        alert(
+          "Please paste some data first."
+        );
 
         return;
       }
 
-      const lines = text
-        .split("\n")
-        .map(line => line.trim())
-        .filter(line => line !== "");
 
-      currentData = lines.map(line => {
+      const lines =
+        text
+          .split(/\r?\n/)
+          .map(line => line.trim())
+          .filter(line => line !== "");
 
-        return line.split(",").map(cell => cell.trim());
 
-      });
+      currentData =
+        lines.map(function (line) {
 
-      let html = "<table>";
-
-      currentData.forEach(function(row, index) {
-
-        html += "<tr>";
-
-        row.forEach(function(cell) {
-
-          const safeCell = cell
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;");
-
-          if (index === 0) {
-
-            html += "<th>" + safeCell + "</th>";
-
-          } else {
-
-            html += "<td>" + safeCell + "</td>";
-          }
+          return line
+            .split(",")
+            .map(cell => cell.trim());
 
         });
 
-        html += "</tr>";
 
-      });
+      let html =
+        "<table>";
+
+
+      currentData.forEach(
+        function (row, index) {
+
+          html += "<tr>";
+
+
+          row.forEach(
+            function (cell) {
+
+              const safeCell =
+                escapeHTML(cell);
+
+
+              if (index === 0) {
+
+                html +=
+                  "<th>" +
+                  safeCell +
+                  "</th>";
+
+              } else {
+
+                html +=
+                  "<td>" +
+                  safeCell +
+                  "</td>";
+
+              }
+
+            }
+          );
+
+
+          html += "</tr>";
+
+        }
+      );
+
 
       html += "</table>";
 
-      result.innerHTML = html;
 
-      result.style.display = "block";
+      result.innerHTML =
+        html;
+
+
+      result.style.display =
+        "block";
+
     }
 
 
@@ -827,38 +1661,60 @@ Ahmed,20,Pakistan"></textarea>
 
       if (!currentData.length) {
 
-        alert("Please format your data first.");
+        alert(
+          "Please format your data first."
+        );
 
         return;
       }
 
-      const csv = currentData
-        .map(row => {
 
-          return row.map(cell => {
+      const csv =
+        currentData
+          .map(function (row) {
 
-            const escaped = String(cell)
-              .replace(/"/g, '""');
+            return row
+              .map(function (cell) {
 
-            return '"' + escaped + '"';
+                const escaped =
+                  String(cell)
+                    .replace(/"/g, '""');
 
-          }).join(",");
 
-        })
-        .join("\n");
+                return '"' +
+                  escaped +
+                  '"';
 
-      const blob = new Blob(
-        [csv],
-        { type: "text/csv;charset=utf-8;" }
-      );
+              })
+              .join(",");
 
-      const url = URL.createObjectURL(blob);
+          })
+          .join("\n");
 
-      const link = document.createElement("a");
+
+      const blob =
+        new Blob(
+          [csv],
+          {
+            type:
+              "text/csv;charset=utf-8;"
+          }
+        );
+
+
+      const url =
+        URL.createObjectURL(blob);
+
+
+      const link =
+        document.createElement("a");
+
 
       link.href = url;
 
-      link.download = "skillbridge-formatted-data.csv";
+      link.download =
+        "skillbridge-formatted-data.csv";
+
 
       document.body.appendChild(link);
 
@@ -866,7 +1722,33 @@ Ahmed,20,Pakistan"></textarea>
 
       document.body.removeChild(link);
 
+
       URL.revokeObjectURL(url);
+
+    }
+
+
+    function clearData() {
+
+      document.getElementById(
+        "dataInput"
+      ).value = "";
+
+
+      const result =
+        document.getElementById(
+          "dataResult"
+        );
+
+
+      result.innerHTML = "";
+
+      result.style.display =
+        "none";
+
+
+      currentData = [];
+
     }
 
   </script>
