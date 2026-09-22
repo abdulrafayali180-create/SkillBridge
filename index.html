@@ -4,13 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>SkillBridge</title>
+  <title>SkillBridge - Learn Skills & Use Free Tools</title>
+
+  <meta
+    name="description"
+    content="SkillBridge helps you learn useful digital skills and use simple free tools for images, text, and data."
+  >
 
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -26,6 +35,10 @@
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid #1e293b;
+      position: sticky;
+      top: 0;
+      background: #0b1120;
+      z-index: 100;
     }
 
     .logo {
@@ -37,6 +50,10 @@
       color: white;
       text-decoration: none;
       margin-left: 20px;
+    }
+
+    nav a:hover {
+      opacity: 0.75;
     }
 
     .hero {
@@ -64,6 +81,12 @@
     .section h2 {
       font-size: 32px;
       margin-bottom: 35px;
+    }
+
+    .section-intro {
+      color: #aebbd0;
+      margin: -15px auto 35px;
+      max-width: 650px;
     }
 
     .cards {
@@ -98,10 +121,86 @@
       color: white;
       text-decoration: none;
       font-weight: bold;
+      border: none;
+      cursor: pointer;
+      font-size: 15px;
     }
 
     .button:hover {
       opacity: 0.85;
+    }
+
+    .tools-area {
+      padding-top: 30px;
+    }
+
+    .tool-box {
+      background: #111827;
+      border: 1px solid #263247;
+      border-radius: 18px;
+      padding: 35px;
+      margin: 35px auto;
+      max-width: 900px;
+      text-align: center;
+    }
+
+    .tool-box h3 {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    .tool-box > p {
+      color: #aebbd0;
+      margin-bottom: 25px;
+    }
+
+    .tool-input {
+      background: #0b1120;
+      color: white;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 10px;
+      margin: 5px;
+    }
+
+    .tool-label {
+      color: #d8e0ed;
+      margin: 5px;
+      display: inline-block;
+    }
+
+    .tool-buttons {
+      margin-top: 15px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 180px;
+      resize: vertical;
+      background: #0b1120;
+      color: white;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 15px;
+      font-family: Arial, sans-serif;
+      font-size: 15px;
+      margin-bottom: 15px;
+    }
+
+    .result-box {
+      margin-top: 20px;
+      padding: 15px;
+      background: #0b1120;
+      border: 1px solid #263247;
+      border-radius: 10px;
+      overflow-x: auto;
+    }
+
+    canvas {
+      max-width: 100%;
+      height: auto;
+      margin-top: 20px;
+      border-radius: 8px;
     }
 
     .services {
@@ -126,6 +225,24 @@
       margin-top: 50px;
     }
 
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th,
+    td {
+      border: 1px solid #334155;
+      padding: 10px;
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    th {
+      background: #1e293b;
+    }
+
     @media (max-width: 800px) {
       .cards {
         grid-template-columns: 1fr;
@@ -138,6 +255,14 @@
       header {
         padding: 18px 5%;
       }
+
+      nav a {
+        margin-left: 10px;
+      }
+
+      .tool-box {
+        padding: 25px 15px;
+      }
     }
   </style>
 </head>
@@ -149,25 +274,33 @@
 
     <nav>
       <a href="#tutorials">Tutorials</a>
+      <a href="#tools">Free Tools</a>
       <a href="#services">Services</a>
     </nav>
   </header>
 
+
+  <!-- HERO -->
   <section class="hero">
     <h1>Build Skills. Create Opportunities.</h1>
+
     <p>
       SkillBridge helps you learn useful digital skills and turn those skills
       into real opportunities.
     </p>
   </section>
 
+
+  <!-- TUTORIALS -->
   <section class="section" id="tutorials">
+
     <h2>Learn Useful Skills</h2>
 
     <div class="cards">
 
       <div class="card">
         <h3>Edit Video</h3>
+
         <p>
           Learn the basics of video editing and start creating better videos.
         </p>
@@ -181,58 +314,267 @@
         </a>
       </div>
 
+
       <div class="card">
         <h3>Create Thumbnail</h3>
+
         <p>
           Learn how to create attractive thumbnails that make people want to
           click.
         </p>
 
-       <a class="button" href="https://youtu.be/4X3efQiR6tA" target="_blank">
+        <a
+          class="button"
+          href="https://youtu.be/4X3efQiR6tA"
+          target="_blank"
+          rel="noopener noreferrer">
           Watch Tutorial
         </a>
       </div>
 
+
       <div class="card">
         <h3>Format Data</h3>
+
         <p>
           Learn useful data-formatting skills that can help with real-world
           digital work.
         </p>
 
-        <a class="button" href="https://youtu.be/LgXzzu68j7M" target="_blank">Watch Tutorial</a>
-          
+        <a
+          class="button"
+          href="https://youtu.be/LgXzzu68j7M"
+          target="_blank"
+          rel="noopener noreferrer">
+          Watch Tutorial
         </a>
       </div>
 
     </div>
   </section>
-<section id="tools">
-  <h2 style="text-align: center;">Free Tools</h2>
-  <p style="text-align: center;">Simple tools you can use directly on SkillBridge.</p>
-  <div class="cards">
 
-    <div class="card">
-      <h3>Image / Thumbnail Resizer</h3>
-      <p>Resize your images quickly and easily.</p>
-      <a class="button" href="#image-resizer">Open Tool</a>
+
+  <!-- FREE TOOLS -->
+  <section class="section tools-area" id="tools">
+
+    <h2>Free Tools</h2>
+
+    <p class="section-intro">
+      Simple tools you can use directly on SkillBridge.
+    </p>
+
+
+    <div class="cards">
+
+      <div class="card">
+        <h3>Image / Thumbnail Resizer</h3>
+
+        <p>
+          Resize your images quickly and easily.
+        </p>
+
+        <a class="button" href="#image-resizer">
+          Open Tool
+        </a>
+      </div>
+
+
+      <div class="card">
+        <h3>Text Formatter</h3>
+
+        <p>
+          Clean and format your text in seconds.
+        </p>
+
+        <a class="button" href="#text-formatter">
+          Open Tool
+        </a>
+      </div>
+
+
+      <div class="card">
+        <h3>Data Formatter</h3>
+
+        <p>
+          Clean and organize simple data.
+        </p>
+
+        <a class="button" href="#data-formatter">
+          Open Tool
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- IMAGE RESIZER -->
+  <section class="tool-box" id="image-resizer">
+
+    <h3>Image / Thumbnail Resizer</h3>
+
+    <p>
+      Upload an image, choose the dimensions, resize it, and download it.
+    </p>
+
+    <input
+      class="tool-input"
+      type="file"
+      id="imageInput"
+      accept="image/*"
+    >
+
+    <br><br>
+
+    <label class="tool-label">
+      Width:
+      <input
+        class="tool-input"
+        type="number"
+        id="imageWidth"
+        placeholder="Width"
+        min="1"
+      >
+    </label>
+
+    <label class="tool-label">
+      Height:
+      <input
+        class="tool-input"
+        type="number"
+        id="imageHeight"
+        placeholder="Height"
+        min="1"
+      >
+    </label>
+
+    <div class="tool-buttons">
+
+      <button
+        class="button"
+        type="button"
+        onclick="resizeImage()">
+        Resize Image
+      </button>
+
     </div>
 
-    <div class="card">
-      <h3>Text Formatter</h3>
-      <p>Clean and format your text in seconds.</p>
-      <a class="button" href="#text-formatter">Open Tool</a>
+    <canvas id="imageCanvas" style="display: none;"></canvas>
+
+    <br>
+
+    <a
+      id="downloadImage"
+      class="button"
+      style="display: none;"
+      download="skillbridge-resized-image.png">
+      Download Image
+    </a>
+
+  </section>
+
+
+  <!-- TEXT FORMATTER -->
+  <section class="tool-box" id="text-formatter">
+
+    <h3>Text Formatter</h3>
+
+    <p>
+      Paste your text below and use the tools to clean and format it.
+    </p>
+
+    <textarea
+      id="textInput"
+      placeholder="Paste your text here..."></textarea>
+
+    <div class="tool-buttons">
+
+      <button
+        class="button"
+        type="button"
+        onclick="formatUppercase()">
+        UPPERCASE
+      </button>
+
+      <button
+        class="button"
+        type="button"
+        onclick="formatLowercase()">
+        lowercase
+      </button>
+
+      <button
+        class="button"
+        type="button"
+        onclick="removeExtraSpaces()">
+        Remove Extra Spaces
+      </button>
+
+      <button
+        class="button"
+        type="button"
+        onclick="removeDuplicateLines()">
+        Remove Duplicate Lines
+      </button>
+
+      <button
+        class="button"
+        type="button"
+        onclick="copyText()">
+        Copy
+      </button>
+
     </div>
 
-    <div class="card">
-      <h3>Data Formatter</h3>
-      <p>Clean and organize simple data.</p>
-      <a class="button" href="#data-formatter">Open Tool</a>
+  </section>
+
+
+  <!-- DATA FORMATTER -->
+  <section class="tool-box" id="data-formatter">
+
+    <h3>Data Formatter</h3>
+
+    <p>
+      Paste comma-separated data below to turn it into a clean table.
+    </p>
+
+    <textarea
+      id="dataInput"
+      placeholder="Example:
+Name,Age,Country
+Ali,18,Saudi Arabia
+Ahmed,20,Pakistan"></textarea>
+
+    <div class="tool-buttons">
+
+      <button
+        class="button"
+        type="button"
+        onclick="formatData()">
+        Format Data
+      </button>
+
+      <button
+        class="button"
+        type="button"
+        onclick="downloadCSV()">
+        Download CSV
+      </button>
+
     </div>
 
-  </div>
-</section>
+    <div
+      class="result-box"
+      id="dataResult"
+      style="display: none;">
+    </div>
+
+  </section>
+
+
+  <!-- SERVICES -->
   <section class="services" id="services">
+
     <h2>Services</h2>
 
     <p>
@@ -240,24 +582,294 @@
       They will be available soon.
     </p>
 
-    <a class="button" href="#" onclick="comingSoon(event)">
+    <a
+      class="button"
+      href="#"
+      onclick="comingSoon(event)">
       Coming Soon
     </a>
+
   </section>
+
 
   <footer>
     © 2026 SkillBridge. All rights reserved.
   </footer>
 
+
+  <!-- JAVASCRIPT -->
   <script>
+
+    /* -----------------------------
+       COMING SOON
+    ----------------------------- */
+
     function comingSoon(event) {
+
       event.preventDefault();
 
       alert(
         "This part of SkillBridge is currently under construction. It will be ready soon!"
       );
     }
+
+
+    /* -----------------------------
+       IMAGE / THUMBNAIL RESIZER
+    ----------------------------- */
+
+    function resizeImage() {
+
+      const input = document.getElementById("imageInput");
+      const widthInput = document.getElementById("imageWidth");
+      const heightInput = document.getElementById("imageHeight");
+      const canvas = document.getElementById("imageCanvas");
+      const download = document.getElementById("downloadImage");
+
+      if (!input.files || !input.files[0]) {
+
+        alert("Please choose an image first.");
+
+        return;
+      }
+
+      const width = parseInt(widthInput.value);
+      const height = parseInt(heightInput.value);
+
+      if (!width || !height || width < 1 || height < 1) {
+
+        alert("Please enter a valid width and height.");
+
+        return;
+      }
+
+      const file = input.files[0];
+
+      const image = new Image();
+
+      image.onload = function () {
+
+        canvas.width = width;
+        canvas.height = height;
+
+        const context = canvas.getContext("2d");
+
+        context.clearRect(0, 0, width, height);
+
+        context.drawImage(
+          image,
+          0,
+          0,
+          width,
+          height
+        );
+
+        canvas.style.display = "block";
+
+        canvas.toBlob(function (blob) {
+
+          const url = URL.createObjectURL(blob);
+
+          download.href = url;
+
+          download.style.display = "inline-block";
+
+        }, "image/png");
+      };
+
+      image.src = URL.createObjectURL(file);
+    }
+
+
+    /* -----------------------------
+       TEXT FORMATTER
+    ----------------------------- */
+
+    function formatUppercase() {
+
+      const text = document.getElementById("textInput");
+
+      text.value = text.value.toUpperCase();
+    }
+
+
+    function formatLowercase() {
+
+      const text = document.getElementById("textInput");
+
+      text.value = text.value.toLowerCase();
+    }
+
+
+    function removeExtraSpaces() {
+
+      const text = document.getElementById("textInput");
+
+      text.value = text.value
+        .replace(/[ \t]+/g, " ")
+        .replace(/\n\s+/g, "\n")
+        .trim();
+    }
+
+
+    function removeDuplicateLines() {
+
+      const text = document.getElementById("textInput");
+
+      const lines = text.value
+        .split("\n")
+        .map(line => line.trim())
+        .filter(line => line !== "");
+
+      const uniqueLines = [...new Set(lines)];
+
+      text.value = uniqueLines.join("\n");
+    }
+
+
+    function copyText() {
+
+      const text = document.getElementById("textInput");
+
+      if (!text.value.trim()) {
+
+        alert("There is no text to copy.");
+
+        return;
+      }
+
+      navigator.clipboard.writeText(text.value)
+        .then(function () {
+
+          alert("Text copied!");
+
+        })
+        .catch(function () {
+
+          text.select();
+
+          document.execCommand("copy");
+
+          alert("Text copied!");
+        });
+    }
+
+
+    /* -----------------------------
+       DATA FORMATTER
+    ----------------------------- */
+
+    let currentData = [];
+
+
+    function formatData() {
+
+      const input = document.getElementById("dataInput");
+      const result = document.getElementById("dataResult");
+
+      const text = input.value.trim();
+
+      if (!text) {
+
+        alert("Please paste some data first.");
+
+        return;
+      }
+
+      const lines = text
+        .split("\n")
+        .map(line => line.trim())
+        .filter(line => line !== "");
+
+      currentData = lines.map(line => {
+
+        return line.split(",").map(cell => cell.trim());
+
+      });
+
+      let html = "<table>";
+
+      currentData.forEach(function(row, index) {
+
+        html += "<tr>";
+
+        row.forEach(function(cell) {
+
+          const safeCell = cell
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+
+          if (index === 0) {
+
+            html += "<th>" + safeCell + "</th>";
+
+          } else {
+
+            html += "<td>" + safeCell + "</td>";
+          }
+
+        });
+
+        html += "</tr>";
+
+      });
+
+      html += "</table>";
+
+      result.innerHTML = html;
+
+      result.style.display = "block";
+    }
+
+
+    function downloadCSV() {
+
+      if (!currentData.length) {
+
+        alert("Please format your data first.");
+
+        return;
+      }
+
+      const csv = currentData
+        .map(row => {
+
+          return row.map(cell => {
+
+            const escaped = String(cell)
+              .replace(/"/g, '""');
+
+            return '"' + escaped + '"';
+
+          }).join(",");
+
+        })
+        .join("\n");
+
+      const blob = new Blob(
+        [csv],
+        { type: "text/csv;charset=utf-8;" }
+      );
+
+      const url = URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+
+      link.href = url;
+
+      link.download = "skillbridge-formatted-data.csv";
+
+      document.body.appendChild(link);
+
+      link.click();
+
+      document.body.removeChild(link);
+
+      URL.revokeObjectURL(url);
+    }
+
   </script>
 
 </body>
-  </html>
+</html>
