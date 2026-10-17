@@ -1,290 +1,582 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SkillBridge — Create Without Limits</title>
-    <style>
-        :root {
-            --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text: #0f172a;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
-            --radius: 8px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkillBridge — Create Without Limits</title>
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.5;
-            padding: 20px;
-        }
-
-        header {
-            max-width: 1200px;
-            margin: 0 auto 40px auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        nav a {
-            color: var(--text-muted);
-            text-decoration: none;
-            margin-left: 20px;
-        }
-
-        nav a:hover {
-            color: var(--text);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .hero {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 16px;
-        }
-
-        .hero p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto 24px auto;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--primary);
-            color: white;
-            padding: 10px 20px;
-            border-radius: var(--radius);
-            text-decoration: none;
-            font-weight: 500;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background-color: var(--primary-hover);
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-            margin-bottom: 60px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 24px;
-        }
-
-        .card h3 {
-            margin: 12px 0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        textarea, input, select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            margin-bottom: 12px;
-            background: var(--bg);
-            color: var(--text);
-        }
-
-        .studio-preview {
-            background: #000;
-            color: #fff;
-            aspect-ratio: 16/9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: var(--radius);
-            margin-bottom: 16px;
-        }
-
-        .flex-group {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 12px;
-        }
-
-        .btn-secondary {
-            background: #e2e8f0;
-            color: var(--text);
-        }
-
-        .btn-secondary:hover {
-            background: #cbd5e1;
-        }
-
-        footer {
-            text-align: center;
-            color: var(--text-muted);
-            padding: 40px 0;
-            border-top: 1px solid var(--border);
-            margin-top: 60px;
-        }
-    </style>
+<style>
+:root {
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --bg: #f8fafc;
+  --card-bg: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --radius: 12px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  padding: 20px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+header, main, footer { max-width: 1200px; margin-left: auto; margin-right: auto; }
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 12px 0 22px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.logo { font-size: 1.5rem; font-weight: 800; }
+nav { display: flex; flex-wrap: wrap; gap: 16px; }
+nav a { color: var(--muted); text-decoration: none; }
+nav a:hover { color: var(--primary); }
+.hero { text-align: center; margin-bottom: 55px; padding: 30px 0; }
+.hero h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.15; margin-bottom: 16px; }
+.hero p { max-width: 680px; margin: 0 auto 24px; color: var(--muted); font-size: 1.1rem; }
+h2 { margin: 35px 0 20px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; margin-bottom: 50px; }
+.card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; min-width: 0; }
+.card h3 { margin: 0 0 12px; }
+.card p { color: var(--muted); }
+.btn {
+  display: inline-block; padding: 10px 17px; border: 0;
+  border-radius: 8px; background: var(--primary); color: white;
+  text-decoration: none; cursor: pointer; font-size: 0.95rem;
+}
+.btn:hover { background: var(--primary-hover); }
+.btn-secondary { background: #e2e8f0; color: var(--text); }
+.btn-secondary:hover { background: #cbd5e1; }
+.flex-group { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0; }
+label { display: block; font-weight: 600; margin: 10px 0 5px; }
+input:not([type="checkbox"]):not([type="file"]), select, textarea {
+  width: 100%; padding: 11px; border: 1px solid var(--border);
+  border-radius: 8px; background: white; color: var(--text); margin-bottom: 10px;
+  font: inherit;
+}
+input[type="checkbox"] { width: auto; }
+textarea { min-height: 130px; resize: vertical; }
+.studio-preview {
+  background: #111827; border-radius: 10px; padding: 12px;
+  margin-bottom: 18px; text-align: center; color: white;
+}
+video { display: block; width: 100%; max-height: 480px; margin: auto; background: #000; }
+.status { color: var(--muted); font-size: 0.9rem; overflow-wrap: anywhere; }
+.result { padding: 12px; background: #f1f5f9; border-radius: 8px; overflow-wrap: anywhere; white-space: pre-wrap; }
+.tool-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px; }
+hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+footer { text-align: center; color: var(--muted); border-top: 1px solid var(--border); margin-top: 60px; padding: 30px 0; }
+[hidden] { display: none !important; }
+@media(max-width:600px) {
+  body { padding: 14px; }
+  header { margin-bottom: 20px; }
+  .card { padding: 17px; }
+}
+</style>
 </head>
+
 <body>
+<header>
+  <div class="logo">SkillBridge</div>
+  <nav>
+    <a href="#tools">Tools</a>
+    <a href="#video-studio">Video Studio</a>
+    <a href="#image-resizer">Image Resizer</a>
+    <a href="#text-toolkit">Text Toolkit</a>
+    <a href="#json-formatter">Data Formatter</a>
+  </nav>
+</header>
 
-    <header>
-        <div class="logo">SkillBridge</div>
-        <nav>
-            <a href="#tools">Tools</a>
-            <a href="#video-studio">Video Studio</a>
-            <a href="#text-toolkit">Text Toolkit</a>
-            <a href="#json-formatter">JSON Formatter</a>
-        </nav>
-    </header>
+<main>
+<section class="hero">
+  <h1>Build skills. Create without limits.</h1>
+  <p>A practical workspace for creators, learners, and small businesses. Edit videos, prepare content, resize images, and format data — right in your browser.</p>
+  <div class="flex-group" style="justify-content:center">
+    <a class="btn" href="#video-studio">▶ Open Video Studio</a>
+    <a class="btn btn-secondary" href="#tools">Explore free tools</a>
+  </div>
+</section>
 
-    <main class="container">
-        <!-- Hero -->
-        <section class="hero">
-            <h1>Build skills. Create without limits.</h1>
-            <p>A practical workspace for creators, learners, and small businesses. Edit videos, prepare content, and use handy tools — right in your browser.</p>
-            <div class="flex-group" style="justify-content: center;">
-                <a href="#video-studio" class="btn">▶ Open Video Studio</a>
-                <a href="#tools" class="btn btn-secondary">Explore free tools</a>
-            </div>
-        </section>
+<h2 id="tools">Tools for your next big idea</h2>
+<div class="grid">
+  <article class="card">
+    <h3>🎬 Video Studio</h3>
+    <p>Import a video, preview a trim, change playback speed, and record the selected playback into a new clip where supported.</p>
+    <a class="btn" href="#video-studio">Open Studio</a>
+  </article>
+  <article class="card">
+    <h3>🖼 Image Resizer</h3>
+    <p>Resize images and export PNG, JPEG, or WebP directly on your device.</p>
+    <a class="btn" href="#image-resizer">Resize image</a>
+  </article>
+  <article class="card">
+    <h3>✍ Text Toolkit</h3>
+    <p>Count words and characters, clean spaces, and change letter case.</p>
+    <a class="btn" href="#text-toolkit">Open toolkit</a>
+  </article>
+  <article class="card">
+    <h3>🧩 Data Formatter</h3>
+    <p>Format, validate, and minify JSON data.</p>
+    <a class="btn" href="#json-formatter">Format data</a>
+  </article>
+</div>
 
-        <!-- Tools Overview -->
-        <h2 id="tools" style="margin-bottom: 24px;">Tools for your next big idea</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>🎬 Video Studio</h3>
-                <p style="color: var(--text-muted); margin-bottom: 16px;">Load a video, trim it, crop the frame, adjust playback speed, and export a processed clip.</p>
-                <a href="#video-studio" class="btn">Open Studio ↗</a>
-            </div>
-            <div class="card">
-                <h3>🖼 Image Resizer</h3>
-                <p style="color: var(--text-muted); margin-bottom: 16px;">Resize images, choose a format, and download a new copy without uploading to a server.</p>
-                <a href="#image-resizer" class="btn">Use image tool</a>
-            </div>
-            <div class="card">
-                <h3>✍ Text Toolkit</h3>
-                <p style="color: var(--text-muted); margin-bottom: 16px;">Count words and characters, clean extra spaces, and convert text between letter cases.</p>
-                <a href="#text-toolkit" class="btn">Use text toolkit</a>
-            </div>
-            <div class="card">
-                <h3>{" "} Data Formatter</h3>
-                <p style="color: var(--text-muted); margin-bottom: 16px;">Format and validate JSON data so it is easier to read and troubleshoot.</p>
-                <a href="#json-formatter" class="btn">Format data</a>
-            </div>
-        </div>
+<section id="video-studio">
+<h2>🎬 Video Studio</h2>
+<div class="card">
+  <label for="video-upload">Import a video from your device</label>
+  <input type="file" id="video-upload" accept="video/*">
+  <div class="studio-preview">
+    <video id="video" controls playsinline></video>
+    <p id="video-placeholder">Your video preview will appear here.</p>
+  </div>
+  <p id="video-status" class="status">Choose a video file to get started.</p>
 
-        <!-- Video Studio -->
-        <h2 id="video-studio" style="margin-bottom: 24px;">Your browser-based video workspace</h2>
-        <div class="card" style="margin-bottom: 60px;">
-            <div class="studio-preview">
-                <div>🎞 Your preview appears here. Import a video to start editing.</div>
-            </div>
-            <input type="file" accept="video/*" style="display: none;" id="video-upload">
-            <button class="btn btn-secondary" onclick="document.getElementById('video-upload').click()" style="margin-bottom: 16px;">Import video</button>
-            
-            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-bottom: 16px;">
-                <div>
-                    <label>Trim start (seconds)</label>
-                    <input type="number" value="0">
-                </div>
-                <div>
-                    <label>Trim end (seconds)</label>
-                    <input type="number" value="0">
-                </div>
-                <div>
-                    <label>Playback speed</label>
-                    <select>
-                        <option>0.5x Slow</option>
-                        <option>0.75x</option>
-                        <option selected>1x Normal</option>
-                        <option>1.25x</option>
-                        <option>1.5x</option>
-                        <option>2x Fast</option>
-                    </select>
-                </div>
-                <div>
-                    <label>Preview aspect ratio</label>
-                    <select>
-                        <option>Original / auto</option>
-                        <option>9:16 — Shorts / Reels</option>
-                        <option>16:9 — YouTube</option>
-                        <option>1:1 — Square</option>
-                    </select>
-                </div>
-            </div>
-            <div class="flex-group">
-                <button class="btn">Preview trim</button>
-                <button class="btn btn-secondary">Export clip</button>
-            </div>
-        </div>
+  <div class="tool-grid">
+    <div>
+      <label for="trim-start">Trim start (seconds)</label>
+      <input id="trim-start" type="number" min="0" value="0" step="0.1">
+    </div>
+    <div>
+      <label for="trim-end">Trim end (seconds)</label>
+      <input id="trim-end" type="number" min="0" value="0" step="0.1">
+    </div>
+    <div>
+      <label for="playback-speed">Playback speed</label>
+      <select id="playback-speed">
+        <option value="0.5">0.5× Slow</option>
+        <option value="0.75">0.75×</option>
+        <option value="1" selected>1× Normal</option>
+        <option value="1.25">1.25×</option>
+        <option value="1.5">1.5×</option>
+        <option value="2">2× Fast</option>
+      </select>
+    </div>
+    <div>
+      <label for="aspect-ratio">Preview aspect ratio</label>
+      <select id="aspect-ratio">
+        <option value="auto">Original</option>
+        <option value="9/16">9:16 — Shorts / Reels</option>
+        <option value="16/9">16:9 — YouTube</option>
+        <option value="1/1">1:1 — Square</option>
+      </select>
+    </div>
+  </div>
+  <div class="flex-group">
+    <button class="btn" id="preview-trim">Preview trim</button>
+    <button class="btn btn-secondary" id="reset-video">Reset preview</button>
+    <button class="btn btn-secondary" id="export-video">Export clip</button>
+  </div>
+  <p class="status">Note: exporting records the video as it plays in real time. Audio capture and recording formats depend on browser support. This is not a frame-accurate professional editor.</p>
+</div>
+</section>
 
-        <!-- Image Resizer -->
-        <h2 id="image-resizer" style="margin-bottom: 24px;">Resize and convert images</h2>
-        <div class="card" style="margin-bottom: 60px;">
-            <input type="file" accept="image/*" style="display: none;" id="image-upload">
-            <button class="btn btn-secondary" onclick="document.getElementById('image-upload').click()" style="margin-bottom: 16px;">Choose an image file</button>
-            
-            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-bottom: 16px;">
-                <div>
-                    <label>Width (px)</label>
-                    <input type="number" value="1280">
-                </div>
-                <div>
-                    <label>Height (px)</label>
-                    <input type="number" value="720">
-                </div>
-                <div style="display: flex; align-items: center; gap: 8px; height: 100%;">
-                    <input type="checkbox" id="ratio" checked style="width: auto; margin: 0;">
-                    <label for="ratio">Keep original aspect ratio</label>
-                </div>
-                <div>
-                    <label>Export format</label>
-                    <select>
-                        <option>PNG</option>
-                        <option selected>JPEG</option>
-                        <option>WebP</option>
-                    </select>
-                </div>
-            </div>
-            <button class="btn">Resize & download</button>
-        </div>
+<section id="image-resizer">
+<h2>🖼 Resize and convert images</h2>
+<div class="card">
+  <label for="image-upload">Choose an image</label>
+  <input type="file" id="image-upload" accept="image/*">
+  <p id="image-status" class="status">No image selected.</p>
+  <img id="image-preview" alt="Selected image preview" hidden style="display:block;max-width:100%;max-height:300px;margin:15px auto;border-radius:8px">
+  <div class="tool-grid">
+    <div><label for="image-width">Width (px)</label><input id="image-width" type="number" min="1" max="12000" value="1280"></div>
+    <div><label for="image-height">Height (px)</label><input id="image-height" type="number" min="1" max="12000" value="720"></div>
+    <div><label for="image-format">Export format</label>
+      <select id="image-format"><option value="image/png">PNG</option><option value="image/jpeg" selected>JPEG</option><option value="image/webp">WebP</option></select>
+    </div>
+    <div><label for="image-quality">Quality (JPEG/WebP)</label><select id="image-quality"><option value="0.6">60%</option><option value="0.8" selected>80%</option><option value="0.95">95%</option></select></div>
+  </div>
+  <label><input type="checkbox" id="keep-ratio" checked> Keep original aspect ratio</label>
+  <button class="btn" id="resize-image">Resize &amp; download</button>
+</div>
+</section>
 
-        <!-- Text Toolkit -->
+<section id="text-toolkit">
+<h2>✍ Text Toolkit</h2>
+<div class="card">
+  <label for="text-input">Enter or paste your text</label>
+  <textarea id="text-input" placeholder="Write or paste text here..."></textarea>
+  <p id="text-stats" class="status">0 words · 0 characters · 0 characters without spaces</p>
+  <div class="flex-group">
+    <button class="btn" data-case="upper">UPPERCASE</button>
+    <button class="btn" data-case="lower">lowercase</button>
+    <button class="btn" data-case="title">Title Case</button>
+    <button class="btn btn-secondary" id="clean-text">Clean spaces</button>
+    <button class="btn btn-secondary" id="copy-text">Copy text</button>
+    <button class="btn btn-secondary" id="clear-text">Clear</button>
+  </div>
+</div>
+</section>
+
+<section id="json-formatter">
+<h2>🧩 JSON / Data Formatter</h2>
+<div class="card">
+  <label for="json-input">Paste JSON data</label>
+  <textarea id="json-input" placeholder='{"name":"SkillBridge","tools":["video","text","images"]}'></textarea>
+  <div class="flex-group">
+    <button class="btn" id="format-json">Format JSON</button>
+    <button class="btn btn-secondary" id="minify-json">Minify JSON</button>
+    <button class="btn btn-secondary" id="validate-json">Validate JSON</button>
+    <button class="btn btn-secondary" id="copy-json">Copy result</button>
+    <button class="btn btn-secondary" id="clear-json">Clear</button>
+  </div>
+  <p id="json-status" class="status">Your result will appear below.</p>
+  <pre id="json-output" class="result"></pre>
+</div>
+</section>
+
+<section id="tutorials">
+<h2>📚 Video Tutorials</h2>
+<div class="grid">
+  <article class="card">
+    <h3>🎞 Video Editing Basics</h3>
+    <p>Learn the basics of video editing.</p>
+    <a class="btn" href="https://www.youtube.com/watch?v=y7Ci_H9bYEk" target="_blank" rel="noopener noreferrer">Watch tutorial ↗</a>
+  </article>
+  <article class="card">
+    <h3>🖼 Thumbnail Creation</h3>
+    <p>Learn about creating video thumbnails.</p>
+    <a class="btn" href="https://www.youtube.com/watch?v=4X3efQiR6tA" target="_blank" rel="noopener noreferrer">Watch tutorial ↗</a>
+  </article>
+  <article class="card">
+    <h3>🧩 Data Formatting</h3>
+    <p>Learn about working with structured data.</p>
+    <a class="btn" href="https://www.youtube.com/watch?v=LgXzzu68j7M" target="_blank" rel="noopener noreferrer">Watch tutorial ↗</a>
+  </article>
+</div>
+</section>
+</main>
+
+<footer>
+  <strong>SkillBridge</strong><br>
+  Create. Learn. Improve.<br>
+  <span class="status">Free browser-based tools. Your selected files are processed locally.</span>
+</footer>
+
+<script>
+"use strict";
+
+/* VIDEO STUDIO */
+const videoInput = document.getElementById("video-upload");
+const video = document.getElementById("video");
+const videoPlaceholder = document.getElementById("video-placeholder");
+const videoStatus = document.getElementById("video-status");
+const trimStart = document.getElementById("trim-start");
+const trimEnd = document.getElementById("trim-end");
+const speedSelect = document.getElementById("playback-speed");
+const aspectSelect = document.getElementById("aspect-ratio");
+let videoURL = null;
+let clipEnd = null;
+let recording = false;
+
+videoInput.addEventListener("change", () => {
+  const file = videoInput.files && videoInput.files[0];
+  if (!file) return;
+  if (videoURL) URL.revokeObjectURL(videoURL);
+  videoURL = URL.createObjectURL(file);
+  video.src = videoURL;
+  video.load();
+  clipEnd = null;
+  videoPlaceholder.hidden = true;
+  videoStatus.textContent = "Loaded: " + file.name;
+});
+
+video.addEventListener("loadedmetadata", () => {
+  trimStart.max = video.duration;
+  trimEnd.max = video.duration;
+  trimEnd.value = video.duration.toFixed(1);
+  videoStatus.textContent = "Video duration: " + video.duration.toFixed(2) + " seconds.";
+});
+
+speedSelect.addEventListener("change", () => {
+  video.playbackRate = Number(speedSelect.value);
+});
+
+aspectSelect.addEventListener("change", () => {
+  video.style.aspectRatio = aspectSelect.value === "auto" ? "auto" : aspectSelect.value;
+  video.style.objectFit = aspectSelect.value === "auto" ? "contain" : "contain";
+});
+
+document.getElementById("preview-trim").addEventListener("click", () => {
+  if (!videoURL) return alert("Please import a video first.");
+  const start = Number(trimStart.value);
+  const end = Number(trimEnd.value);
+  if (start < 0 || end <= start || end > video.duration) {
+    return alert("Enter a valid trim range within the video duration.");
+  }
+  clipEnd = end;
+  video.currentTime = start;
+  video.playbackRate = Number(speedSelect.value);
+  video.play().catch(() => {
+    videoStatus.textContent = "Press Play in the video controls to preview.";
+  });
+});
+
+video.addEventListener("timeupdate", () => {
+  if (clipEnd !== null && video.currentTime >= clipEnd && !video.paused) {
+    video.pause();
+    clipEnd = null;
+  }
+});
+
+document.getElementById("reset-video").addEventListener("click", () => {
+  if (!videoURL) return alert("Import a video first.");
+  clipEnd = null;
+  video.pause();
+  video.currentTime = 0;
+  video.playbackRate = 1;
+  speedSelect.value = "1";
+  aspectSelect.value = "auto";
+  video.style.aspectRatio = "auto";
+});
+
+document.getElementById("export-video").addEventListener("click", async () => {
+  if (!videoURL) return alert("Please import a video first.");
+  if (recording) return;
+  if (!("MediaRecorder" in window) || !video.captureStream) {
+    return alert("This browser does not support in-browser video recording. Try a recent version of Chrome or Edge.");
+  }
+
+  const start = Number(trimStart.value);
+  const end = Number(trimEnd.value);
+  if (start < 0 || end <= start || end > video.duration) {
+    return alert("Enter a valid trim range before exporting.");
+  }
+
+  const stream = video.captureStream();
+  let mime = "";
+  if (MediaRecorder.isTypeSupported("video/webm;codecs=vp9")) mime = "video/webm;codecs=vp9";
+  else if (MediaRecorder.isTypeSupported("video/webm;codecs=vp8")) mime = "video/webm;codecs=vp8";
+  else if (MediaRecorder.isTypeSupported("video/webm")) mime = "video/webm";
+  else return alert("No supported WebM recording format was found in this browser.");
+
+  let recorder;
+  try {
+    recorder = new MediaRecorder(stream, { mimeType: mime });
+  } catch (error) {
+    return alert("Could not start recording in this browser.");
+  }
+
+  const chunks = [];
+  recorder.ondataavailable = event => {
+    if (event.data && event.data.size > 0) chunks.push(event.data);
+  };
+  recorder.onerror = () => {
+    recording = false;
+    videoStatus.textContent = "Recording failed. Try another video or browser.";
+  };
+  recorder.onstop = () => {
+    recording = false;
+    stream.getTracks().forEach(track => track.stop());
+    if (!chunks.length) {
+      videoStatus.textContent = "No video data was recorded.";
+      return;
+    }
+    const blob = new Blob(chunks, { type: mime });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "skillbridge-clip.webm";
+    link.click();
+    setTimeout(() => URL.revokeObjectURL(url), 30000);
+    videoStatus.textContent = "Export finished. Saved as a WebM recording.";
+  };
+
+  recording = true;
+  videoStatus.textContent = "Recording selected section in real time. Please wait...";
+  video.pause();
+  video.currentTime = start;
+  video.playbackRate = Number(speedSelect.value);
+
+  video.onseeked = async function beginRecording() {
+    video.onseeked = null;
+    try {
+      recorder.start();
+      await video.play();
+    } catch (error) {
+      if (recorder.state !== "inactive") recorder.stop();
+      recording = false;
+      videoStatus.textContent = "Playback could not start. Check browser permissions and try again.";
+      return;
+    }
+    const stopAtEnd = () => {
+      if (video.currentTime >= end && recorder.state !== "inactive") {
+        video.pause();
+        recorder.stop();
+        video.removeEventListener("timeupdate", stopAtEnd);
+      }
+    };
+    video.addEventListener("timeupdate", stopAtEnd);
+    recorder.addEventListener("stop", () => video.removeEventListener("timeupdate", stopAtEnd), { once: true });
+  };
+  video.currentTime = start;
+});
+
+/* IMAGE RESIZER */
+const imageInput = document.getElementById("image-upload");
+const imagePreview = document.getElementById("image-preview");
+const imageStatus = document.getElementById("image-status");
+let selectedImage = null;
+let imageURL = null;
+let originalWidth = 0;
+let originalHeight = 0;
+
+imageInput.addEventListener("change", () => {
+  const file = imageInput.files && imageInput.files[0];
+  if (!file) return;
+  if (!file.type.startsWith("image/")) return alert("Choose a valid image.");
+  selectedImage = file;
+  if (imageURL) URL.revokeObjectURL(imageURL);
+  imageURL = URL.createObjectURL(file);
+  const img = new Image();
+  img.onload = () => {
+    originalWidth = img.naturalWidth;
+    originalHeight = img.naturalHeight;
+    document.getElementById("image-width").value = originalWidth;
+    document.getElementById("image-height").value = originalHeight;
+    imagePreview.src = imageURL;
+    imagePreview.hidden = false;
+    imageStatus.textContent = "Loaded " + file.name + " (" + originalWidth + " × " + originalHeight + ").";
+  };
+  img.onerror = () => alert("This image could not be opened.");
+  img.src = imageURL;
+});
+
+document.getElementById("image-width").addEventListener("input", () => {
+  if (!selectedImage || !document.getElementById("keep-ratio").checked) return;
+  const w = Number(document.getElementById("image-width").value);
+  if (w > 0) document.getElementById("image-height").value = Math.round(w * originalHeight / originalWidth);
+});
+document.getElementById("image-height").addEventListener("input", () => {
+  if (!selectedImage || !document.getElementById("keep-ratio").checked) return;
+  const h = Number(document.getElementById("image-height").value);
+  if (h > 0) document.getElementById("image-width").value = Math.round(h * originalWidth / originalHeight);
+});
+
+document.getElementById("resize-image").addEventListener("click", () => {
+  if (!selectedImage) return alert("Choose an image first.");
+  const width = Number(document.getElementById("image-width").value);
+  const height = Number(document.getElementById("image-height").value);
+  const format = document.getElementById("image-format").value;
+  const quality = Number(document.getElementById("image-quality").value);
+  if (!Number.isInteger(width) || !Number.isInteger(height) || width < 1 || height < 1 || width > 12000 || height > 12000) {
+    return alert("Width and height must be between 1 and 12000 pixels.");
+  }
+  const img = new Image();
+  img.onload = () => {
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext("2d");
+    if (format === "image/jpeg") {
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, width, height);
+    }
+    ctx.drawImage(img, 0, 0, width, height);
+    canvas.toBlob(blob => {
+      if (!blob) return alert("Image export failed. Try another format.");
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      const ext = format === "image/jpeg" ? "jpg" : format === "image/webp" ? "webp" : "png";
+      a.href = url;
+      a.download = "skillbridge-resized." + ext;
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 30000);
+      imageStatus.textContent = "Resized image downloaded (" + width + " × " + height + ").";
+    }, format, quality);
+  };
+  img.onerror = () => alert("Could not load the selected image.");
+  img.src = imageURL;
+});
+
+/* TEXT TOOLKIT */
+const textInput = document.getElementById("text-input");
+const textStats = document.getElementById("text-stats");
+
+function updateTextStats() {
+  const value = textInput.value;
+  const trimmed = value.trim();
+  const words = trimmed ? trimmed.split(/\s+/).length : 0;
+  textStats.textContent = words + " words · " + value.length +
+    " characters · " + value.replace(/\s/g, "").length + " characters without spaces";
+}
+textInput.addEventListener("input", updateTextStats);
+
+document.querySelectorAll("[data-case]").forEach(button => {
+  button.addEventListener("click", () => {
+    const mode = button.dataset.case;
+    if (mode === "upper") textInput.value = textInput.value.toUpperCase();
+    if (mode === "lower") textInput.value = textInput.value.toLowerCase();
+    if (mode === "title") {
+      textInput.value = textInput.value.toLowerCase().replace(/\b\w/g, char => char.toUpperCase());
+    }
+    updateTextStats();
+  });
+});
+document.getElementById("clean-text").addEventListener("click", () => {
+  textInput.value = textInput.value.split("\n").map(line => line.trim().replace(/[ \t]+/g, " ")).join("\n").trim();
+  updateTextStats();
+});
+document.getElementById("copy-text").addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText(textInput.value);
+    alert("Text copied.");
+  } catch (error) {
+    textInput.select();
+    alert("If copying did not happen automatically, press Ctrl+C.");
+  }
+});
+document.getElementById("clear-text").addEventListener("click", () => {
+  textInput.value = "";
+  updateTextStats();
+});
+
+/* JSON FORMATTER */
+const jsonInput = document.getElementById("json-input");
+const jsonOutput = document.getElementById("json-output");
+const jsonStatus = document.getElementById("json-status");
+
+function processJSON(mode) {
+  try {
+    const parsed = JSON.parse(jsonInput.value);
+    if (mode === "format") jsonOutput.textContent = JSON.stringify(parsed, null, 2);
+    else if (mode === "minify") jsonOutput.textContent = JSON.stringify(parsed);
+    else jsonOutput.textContent = JSON.stringify(parsed, null, 2);
+    jsonStatus.textContent = "Valid JSON. " + (mode === "minify" ? "Minified successfully." : "Validation successful.");
+  } catch (error) {
+    jsonOutput.textContent = "";
+    jsonStatus.textContent = "Invalid JSON: " + error.message;
+  }
+}
+document.getElementById("format-json").addEventListener("click", () => processJSON("format"));
+document.getElementById("minify-json").addEventListener("click", () => processJSON("minify"));
+document.getElementById("validate-json").addEventListener("click", () => processJSON("validate"));
+document.getElementById("copy-json").addEventListener("click", async () => {
+  const value = jsonOutput.textContent;
+  if (!value) return alert("There is no result to copy.");
+  try {
+    await navigator.clipboard.writeText(value);
+    alert("Result copied.");
+  } catch (error) {
+    alert("Clipboard access is unavailable. Select the result and press Ctrl+C.");
+  }
+});
+document.getElementById("clear-json").addEventListener("click", () => {
+  jsonInput.value = "";
+  jsonOutput.textContent = "";
+  jsonStatus.textContent = "Your result will appear below.";
+});
+</script>
+</body>
+</html>
