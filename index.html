@@ -4,578 +4,1448 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f5f8ff">
+<meta name="description" content="SkillBridge is a free creative workspace for video editing, image resizing, text formatting and JSON tools.">
 <title>SkillBridge — Create Without Limits</title>
 
 <style>
 :root {
-  --primary: #2563eb;
-  --primary-hover: #1d4ed8;
-  --bg: #f8fafc;
-  --card-bg: #ffffff;
-  --text: #0f172a;
-  --muted: #64748b;
-  --border: #e2e8f0;
-  --radius: 12px;
+  --bg: #f5f8ff;
+  --surface: #ffffff;
+  --surface2: #eef3ff;
+  --text: #17223b;
+  --muted: #68758e;
+  --blue: #3268f5;
+  --blue-dark: #204bd0;
+  --border: #e0e7f4;
+  --green: #16845b;
+  --red: #c73d4d;
+  --shadow: 0 8px 28px rgba(28, 55, 110, .07);
 }
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
 body {
-  margin: 0;
-  padding: 20px;
+  font-family: Arial, Helvetica, sans-serif;
   background: var(--bg);
   color: var(--text);
-  font-family: Arial, Helvetica, sans-serif;
   line-height: 1.6;
 }
-header, main, footer { max-width: 1200px; margin-left: auto; margin-right: auto; }
-header {
+
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+button:disabled { opacity: .5; cursor: not-allowed; }
+a { color: inherit; text-decoration: none; }
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  padding: 12px 0 22px;
-  margin-bottom: 40px;
+  gap: 18px;
+  padding: 15px 5%;
+  background: rgba(255,255,255,.94);
   border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
 }
-.logo { font-size: 1.5rem; font-weight: 800; }
-nav { display: flex; flex-wrap: wrap; gap: 16px; }
-nav a { color: var(--muted); text-decoration: none; }
-nav a:hover { color: var(--primary); }
-.hero { text-align: center; margin-bottom: 55px; padding: 30px 0; }
-.hero h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.15; margin-bottom: 16px; }
-.hero p { max-width: 680px; margin: 0 auto 24px; color: var(--muted); font-size: 1.1rem; }
-h2 { margin: 35px 0 20px; }
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; margin-bottom: 50px; }
-.card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; min-width: 0; }
-.card h3 { margin: 0 0 12px; }
-.card p { color: var(--muted); }
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -.7px;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  color: white;
+  background: linear-gradient(135deg, #477bff, #2448d6);
+  border-radius: 12px;
+  font-size: 20px;
+}
+
+.nav {
+  display: flex;
+  gap: 19px;
+  align-items: center;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.nav a:hover { color: var(--blue); }
+
+.hero {
+  padding: 76px 20px 58px;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(73,125,255,.14), transparent 60%),
+    var(--bg);
+}
+
+.eyebrow {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid #d6e2ff;
+  border-radius: 99px;
+  background: #fff;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.hero h1 {
+  max-width: 850px;
+  margin: 20px auto 14px;
+  font-size: clamp(36px, 6vw, 65px);
+  line-height: 1.08;
+  letter-spacing: -2.7px;
+}
+
+.gradient-text {
+  color: var(--blue);
+}
+
+.hero p {
+  max-width: 630px;
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
 .btn {
-  display: inline-block; padding: 10px 17px; border: 0;
-  border-radius: 8px; background: var(--primary); color: white;
-  text-decoration: none; cursor: pointer; font-size: 0.95rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  min-height: 43px;
+  padding: 10px 17px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+  font-weight: 700;
+  font-size: 13px;
+  transition: .18s ease;
 }
-.btn:hover { background: var(--primary-hover); }
-.btn-secondary { background: #e2e8f0; color: var(--text); }
-.btn-secondary:hover { background: #cbd5e1; }
-.flex-group { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0; }
-label { display: block; font-weight: 600; margin: 10px 0 5px; }
-input:not([type="checkbox"]):not([type="file"]), select, textarea {
-  width: 100%; padding: 11px; border: 1px solid var(--border);
-  border-radius: 8px; background: white; color: var(--text); margin-bottom: 10px;
-  font: inherit;
+
+.btn:hover:not(:disabled) { transform: translateY(-1px); }
+
+.btn-primary {
+  color: white;
+  background: var(--blue);
+  border-color: var(--blue);
 }
-input[type="checkbox"] { width: auto; }
-textarea { min-height: 130px; resize: vertical; }
-.studio-preview {
-  background: #111827; border-radius: 10px; padding: 12px;
-  margin-bottom: 18px; text-align: center; color: white;
+
+.btn-primary:hover:not(:disabled) { background: var(--blue-dark); }
+
+.btn-soft {
+  background: var(--surface2);
+  color: var(--blue);
+  border-color: #dce6ff;
 }
-video { display: block; width: 100%; max-height: 480px; margin: auto; background: #000; }
-.status { color: var(--muted); font-size: 0.9rem; overflow-wrap: anywhere; }
-.result { padding: 12px; background: #f1f5f9; border-radius: 8px; overflow-wrap: anywhere; white-space: pre-wrap; }
-.tool-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px; }
-hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
-footer { text-align: center; color: var(--muted); border-top: 1px solid var(--border); margin-top: 60px; padding: 30px 0; }
-[hidden] { display: none !important; }
-@media(max-width:600px) {
-  body { padding: 14px; }
-  header { margin-bottom: 20px; }
-  .card { padding: 17px; }
+
+.btn-danger { color: var(--red); }
+
+.page {
+  width: min(1120px, 92%);
+  margin: 0 auto;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 13px;
+  margin: 0 auto 60px;
+}
+
+.stat {
+  padding: 19px;
+  text-align: center;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+}
+
+.stat strong { display: block; font-size: 23px; }
+.stat span { color: var(--muted); font-size: 12px; }
+
+.section { margin-bottom: 65px; }
+
+.section-heading { margin-bottom: 22px; }
+
+.section-heading h2 {
+  font-size: clamp(25px, 4vw, 34px);
+  letter-spacing: -1px;
+}
+
+.section-heading p {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.tool-card {
+  min-width: 0;
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+}
+
+.tool-card h3 { font-size: 20px; letter-spacing: -.4px; }
+.tool-card .description { margin: 5px 0 20px; color: var(--muted); font-size: 13px; }
+
+.tool-icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 15px;
+  border-radius: 13px;
+  background: #edf2ff;
+  font-size: 23px;
+}
+
+.field { margin-bottom: 15px; }
+.field label, .field-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+input[type="text"], input[type="number"], select, textarea {
+  width: 100%;
+  min-width: 0;
+  padding: 11px 12px;
+  color: var(--text);
+  background: #fbfcff;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  outline: none;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(50,104,245,.1);
+}
+
+textarea { resize: vertical; min-height: 125px; }
+
+input[type="range"] { width: 100%; accent-color: var(--blue); }
+
+input[type="file"] {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border: 1px dashed #bdccec;
+  border-radius: 10px;
+  background: #f8faff;
+  font-size: 12px;
+}
+
+.two-cols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 12px;
+}
+
+.three-cols {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 10px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.preview {
+  display: grid;
+  place-items: center;
+  min-height: 120px;
+  margin: 13px 0;
+  padding: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background:
+    linear-gradient(45deg,#f0f3fa 25%,transparent 25%),
+    linear-gradient(-45deg,#f0f3fa 25%,transparent 25%),
+    linear-gradient(45deg,transparent 75%,#f0f3fa 75%),
+    linear-gradient(-45deg,transparent 75%,#f0f3fa 75%);
+  background-size: 18px 18px;
+  background-position: 0 0,0 9px,9px -9px,-9px 0;
+}
+
+.preview video, .preview canvas, .preview img {
+  display: block;
+  max-width: 100%;
+  max-height: 340px;
+  border-radius: 7px;
+}
+
+.preview video { width: 100%; background: #111; }
+.preview canvas { height: auto; }
+.placeholder { padding: 20px; color: var(--muted); text-align: center; font-size: 12px; }
+
+.status {
+  min-height: 22px;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.status.success { color: var(--green); }
+.status.error { color: var(--red); }
+
+.notice {
+  margin: 12px 0;
+  padding: 12px 13px;
+  border: 1px solid #dbe6ff;
+  border-radius: 10px;
+  background: #f4f7ff;
+  color: #4c5c7d;
+  font-size: 12px;
+}
+
+.checkline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0 13px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.checkline input { accent-color: var(--blue); }
+
+.slider-row { margin-bottom: 13px; }
+.slider-top { display: flex; justify-content: space-between; gap: 10px; font-size: 12px; }
+.slider-top output { color: var(--blue); font-weight: 800; }
+
+.output-box {
+  padding: 13px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #f8faff;
+  color: var(--muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.tutorial-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 15px;
+}
+
+.tutorial {
+  padding: 20px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+}
+
+.tutorial .play { font-size: 25px; }
+.tutorial h3 { margin: 8px 0 5px; font-size: 16px; }
+.tutorial p { margin-bottom: 15px; color: var(--muted); font-size: 12px; }
+
+footer {
+  margin-top: 75px;
+  padding: 32px 20px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  background: #fff;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+footer strong { color: var(--text); }
+
+@media (max-width: 760px) {
+  .nav { gap: 10px; font-size: 11px; }
+  .nav a:nth-child(2), .nav a:nth-child(3) { display: none; }
+  .hero { padding-top: 54px; }
+  .stats { grid-template-columns: repeat(2,1fr); margin-bottom: 45px; }
+  .tools-grid { grid-template-columns: 1fr; }
+  .tutorial-grid { grid-template-columns: 1fr; }
+  .tool-card { padding: 19px; }
+  .section { margin-bottom: 48px; }
+}
+
+@media (max-width: 380px) {
+  .brand { font-size: 17px; }
+  .two-cols, .three-cols { grid-template-columns: 1fr; }
+  .hero h1 { letter-spacing: -1.4px; }
 }
 </style>
 </head>
 
 <body>
-<header>
-  <div class="logo">SkillBridge</div>
-  <nav>
-    <a href="#tools">Tools</a>
+<header class="topbar">
+  <a class="brand" href="#home" aria-label="SkillBridge home">
+    <span class="brand-mark">S</span>
+    <span>SkillBridge</span>
+  </a>
+
+  <nav class="nav" aria-label="Main navigation">
     <a href="#video-studio">Video Studio</a>
-    <a href="#image-resizer">Image Resizer</a>
-    <a href="#text-toolkit">Text Toolkit</a>
-    <a href="#json-formatter">Data Formatter</a>
+    <a href="#image-tools">Images</a>
+    <a href="#text-tools">Text Tools</a>
+    <a href="#tutorials">Tutorials</a>
   </nav>
 </header>
 
-<main>
-<section class="hero">
-  <h1>Build skills. Create without limits.</h1>
-  <p>A practical workspace for creators, learners, and small businesses. Edit videos, prepare content, resize images, and format data — right in your browser.</p>
-  <div class="flex-group" style="justify-content:center">
-    <a class="btn" href="#video-studio">▶ Open Video Studio</a>
-    <a class="btn btn-secondary" href="#tools">Explore free tools</a>
-  </div>
-</section>
-
-<h2 id="tools">Tools for your next big idea</h2>
-<div class="grid">
-  <article class="card">
-    <h3>🎬 Video Studio</h3>
-    <p>Import a video, preview a trim, change playback speed, and record the selected playback into a new clip where supported.</p>
-    <a class="btn" href="#video-studio">Open Studio</a>
-  </article>
-  <article class="card">
-    <h3>🖼 Image Resizer</h3>
-    <p>Resize images and export PNG, JPEG, or WebP directly on your device.</p>
-    <a class="btn" href="#image-resizer">Resize image</a>
-  </article>
-  <article class="card">
-    <h3>✍ Text Toolkit</h3>
-    <p>Count words and characters, clean spaces, and change letter case.</p>
-    <a class="btn" href="#text-toolkit">Open toolkit</a>
-  </article>
-  <article class="card">
-    <h3>🧩 Data Formatter</h3>
-    <p>Format, validate, and minify JSON data.</p>
-    <a class="btn" href="#json-formatter">Format data</a>
-  </article>
-</div>
-
-<section id="video-studio">
-<h2>🎬 Video Studio</h2>
-<div class="card">
-  <label for="video-upload">Import a video from your device</label>
-  <input type="file" id="video-upload" accept="video/*">
-  <div class="studio-preview">
-    <video id="video" controls playsinline></video>
-    <p id="video-placeholder">Your video preview will appear here.</p>
-  </div>
-  <p id="video-status" class="status">Choose a video file to get started.</p>
-
-  <div class="tool-grid">
-    <div>
-      <label for="trim-start">Trim start (seconds)</label>
-      <input id="trim-start" type="number" min="0" value="0" step="0.1">
+<main id="home">
+  <section class="hero">
+    <span class="eyebrow">YOUR FREE CREATIVE WORKSPACE</span>
+    <h1>Create more.<br><span class="gradient-text">Without limits.</span></h1>
+    <p>Edit videos, resize images, format text and work with JSON data using simple tools in your browser. No account required.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#video-studio">Open Video Studio ↗</a>
+      <a class="btn" href="#all-tools">Explore all tools</a>
     </div>
-    <div>
-      <label for="trim-end">Trim end (seconds)</label>
-      <input id="trim-end" type="number" min="0" value="0" step="0.1">
-    </div>
-    <div>
-      <label for="playback-speed">Playback speed</label>
-      <select id="playback-speed">
-        <option value="0.5">0.5× Slow</option>
-        <option value="0.75">0.75×</option>
-        <option value="1" selected>1× Normal</option>
-        <option value="1.25">1.25×</option>
-        <option value="1.5">1.5×</option>
-        <option value="2">2× Fast</option>
-      </select>
-    </div>
-    <div>
-      <label for="aspect-ratio">Preview aspect ratio</label>
-      <select id="aspect-ratio">
-        <option value="auto">Original</option>
-        <option value="9/16">9:16 — Shorts / Reels</option>
-        <option value="16/9">16:9 — YouTube</option>
-        <option value="1/1">1:1 — Square</option>
-      </select>
-    </div>
-  </div>
-  <div class="flex-group">
-    <button class="btn" id="preview-trim">Preview trim</button>
-    <button class="btn btn-secondary" id="reset-video">Reset preview</button>
-    <button class="btn btn-secondary" id="export-video">Export clip</button>
-  </div>
-  <p class="status">Note: exporting records the video as it plays in real time. Audio capture and recording formats depend on browser support. This is not a frame-accurate professional editor.</p>
-</div>
-</section>
+  </section>
 
-<section id="image-resizer">
-<h2>🖼 Resize and convert images</h2>
-<div class="card">
-  <label for="image-upload">Choose an image</label>
-  <input type="file" id="image-upload" accept="image/*">
-  <p id="image-status" class="status">No image selected.</p>
-  <img id="image-preview" alt="Selected image preview" hidden style="display:block;max-width:100%;max-height:300px;margin:15px auto;border-radius:8px">
-  <div class="tool-grid">
-    <div><label for="image-width">Width (px)</label><input id="image-width" type="number" min="1" max="12000" value="1280"></div>
-    <div><label for="image-height">Height (px)</label><input id="image-height" type="number" min="1" max="12000" value="720"></div>
-    <div><label for="image-format">Export format</label>
-      <select id="image-format"><option value="image/png">PNG</option><option value="image/jpeg" selected>JPEG</option><option value="image/webp">WebP</option></select>
-    </div>
-    <div><label for="image-quality">Quality (JPEG/WebP)</label><select id="image-quality"><option value="0.6">60%</option><option value="0.8" selected>80%</option><option value="0.95">95%</option></select></div>
-  </div>
-  <label><input type="checkbox" id="keep-ratio" checked> Keep original aspect ratio</label>
-  <button class="btn" id="resize-image">Resize &amp; download</button>
-</div>
-</section>
+  <div class="page">
+    <section class="stats" aria-label="Website features">
+      <div class="stat"><strong>4</strong><span>Creative tool areas</span></div>
+      <div class="stat"><strong>Free</strong><span>No subscription</span></div>
+      <div class="stat"><strong>Local</strong><span>Browser-based processing</span></div>
+      <div class="stat"><strong>Simple</strong><span>Beginner-friendly</span></div>
+    </section>
 
-<section id="text-toolkit">
-<h2>✍ Text Toolkit</h2>
-<div class="card">
-  <label for="text-input">Enter or paste your text</label>
-  <textarea id="text-input" placeholder="Write or paste text here..."></textarea>
-  <p id="text-stats" class="status">0 words · 0 characters · 0 characters without spaces</p>
-  <div class="flex-group">
-    <button class="btn" data-case="upper">UPPERCASE</button>
-    <button class="btn" data-case="lower">lowercase</button>
-    <button class="btn" data-case="title">Title Case</button>
-    <button class="btn btn-secondary" id="clean-text">Clean spaces</button>
-    <button class="btn btn-secondary" id="copy-text">Copy text</button>
-    <button class="btn btn-secondary" id="clear-text">Clear</button>
-  </div>
-</div>
-</section>
+    <section class="section" id="video-studio">
+      <div class="section-heading">
+        <h2>Video Studio</h2>
+        <p>Preview a video, trim its playback range, adjust its appearance and export a processed copy.</p>
+      </div>
 
-<section id="json-formatter">
-<h2>🧩 JSON / Data Formatter</h2>
-<div class="card">
-  <label for="json-input">Paste JSON data</label>
-  <textarea id="json-input" placeholder='{"name":"SkillBridge","tools":["video","text","images"]}'></textarea>
-  <div class="flex-group">
-    <button class="btn" id="format-json">Format JSON</button>
-    <button class="btn btn-secondary" id="minify-json">Minify JSON</button>
-    <button class="btn btn-secondary" id="validate-json">Validate JSON</button>
-    <button class="btn btn-secondary" id="copy-json">Copy result</button>
-    <button class="btn btn-secondary" id="clear-json">Clear</button>
-  </div>
-  <p id="json-status" class="status">Your result will appear below.</p>
-  <pre id="json-output" class="result"></pre>
-</div>
-</section>
+      <div class="tools-grid">
+        <article class="tool-card">
+          <div class="tool-icon">🎬</div>
+          <h3>Video Editor</h3>
+          <p class="description">Load a video, choose a section, adjust playback speed and export the result.</p>
 
-<section id="tutorials">
-<h2>📚 Video Tutorials</h2>
-<div class="grid">
-  <article class="card">
-    <h3>🎞 Video Editing Basics</h3>
-    <p>Learn the basics of video editing.</p>
-    <a class="btn" href="https://www.youtube.com/watch?v=y7Ci_H9bYEk" target="_blank" rel="noopener noreferrer">Watch tutorial ↗</a>
-  </article>
-  <article class="card">
-    <h3>🖼 Thumbnail Creation</h3>
-    <p>Learn about creating video thumbnails.</p>
-    <a class="btn" href="https://www.youtube.com/watch?v=4X3efQiR6tA" target="_blank" rel="noopener noreferrer">Watch tutorial ↗</a>
-  </article>
-  <article class="card">
-    <h3>🧩 Data Formatting</h3>
-    <p>Learn about working with structured data.</p>
-    <a class="btn" href="https://www.youtube.com/watch?v=LgXzzu68j7M" target="_blank" rel="noopener noreferrer">Watch tutorial ↗</a>
-  </article>
-</div>
-</section>
+          <div class="field">
+            <label for="videoFile">Choose a video</label>
+            <input id="videoFile" type="file" accept="video/*">
+          </div>
+
+          <div class="preview" id="videoPreview">
+            <div class="placeholder">Your video preview will appear here.</div>
+          </div>
+
+          <div class="two-cols">
+            <div class="field">
+              <label for="trimStart">Start time (seconds)</label>
+              <input id="trimStart" type="number" min="0" step="0.1" value="0">
+            </div>
+            <div class="field">
+              <label for="trimEnd">End time (seconds)</label>
+              <input id="trimEnd" type="number" min="0" step="0.1" value="30">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="playbackSpeed">Playback speed</label>
+            <select id="playbackSpeed">
+              <option value="0.5">0.5× — Slow</option>
+              <option value="0.75">0.75×</option>
+              <option value="1" selected>1× — Normal</option>
+              <option value="1.25">1.25×</option>
+              <option value="1.5">1.5×</option>
+              <option value="2">2× — Fast</option>
+            </select>
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-primary" id="previewTrim">▶ Preview section</button>
+            <button class="btn" id="resetVideo">Reset settings</button>
+          </div>
+          <div class="actions">
+            <button class="btn btn-primary" id="exportVideo">Export edited video</button>
+            <button class="btn btn-danger" id="stopExport" disabled>Stop export</button>
+          </div>
+
+          <div class="notice">
+            Export is recorded in WebM format when supported by your browser. Processing happens in your browser and may be slow for long or large videos.
+          </div>
+          <div class="status" id="videoStatus" role="status" aria-live="polite">Choose a video to begin.</div>
+        </article>
+
+        <article class="tool-card">
+          <div class="tool-icon">✨</div>
+          <h3>Video Quality Enhancer</h3>
+          <p class="description">Upscale a video and adjust its brightness, contrast and colour before exporting.</p>
+
+          <div class="notice">
+            This is a free, browser-based enhancement tool — not an AI restoration model. Upscaling increases output dimensions but cannot recreate details that were never captured.
+          </div>
+
+          <div class="field">
+            <label for="qualityMode">Output resolution</label>
+            <select id="qualityMode">
+              <option value="original">Keep original dimensions</option>
+              <option value="720">Upscale — 720p maximum side</option>
+              <option value="1080" selected>Upscale — 1080p maximum side</option>
+            </select>
+          </div>
+
+          <div class="slider-row">
+            <div class="slider-top"><label for="brightness">Brightness</label><output id="brightnessValue">100%</output></div>
+            <input id="brightness" type="range" min="50" max="150" value="100">
+          </div>
+
+          <div class="slider-row">
+            <div class="slider-top"><label for="contrast">Contrast</label><output id="contrastValue">100%</output></div>
+            <input id="contrast" type="range" min="50" max="160" value="100">
+          </div>
+
+          <div class="slider-row">
+            <div class="slider-top"><label for="saturation">Saturation</label><output id="saturationValue">100%</output></div>
+            <input id="saturation" type="range" min="0" max="180" value="100">
+          </div>
+
+          <div class="preview" id="enhancerPreview">
+            <div class="placeholder">Load a video in the Video Editor to use the enhancer.</div>
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-primary" id="enhanceExport">Enhance &amp; export</button>
+            <button class="btn" id="resetEnhancer">Reset adjustments</button>
+          </div>
+          <div class="status" id="enhancerStatus" role="status" aria-live="polite">Ready when a video is loaded.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="image-tools">
+      <div class="section-heading">
+        <h2>Image Resizer</h2>
+        <p>Resize an image for posts, thumbnails, websites and other creative projects.</p>
+      </div>
+
+      <div class="tools-grid">
+        <article class="tool-card">
+          <div class="tool-icon">🖼️</div>
+          <h3>Resize &amp; Export</h3>
+          <p class="description">Choose an image, set its dimensions and download the resized result.</p>
+
+          <div class="field">
+            <label for="imageFile">Choose an image</label>
+            <input id="imageFile" type="file" accept="image/*">
+          </div>
+
+          <div class="preview" id="imagePreview">
+            <div class="placeholder">Your image preview will appear here.</div>
+          </div>
+
+          <div class="two-cols">
+            <div class="field">
+              <label for="imageWidth">Width (px)</label>
+              <input id="imageWidth" type="number" min="1" max="8000" value="1080">
+            </div>
+            <div class="field">
+              <label for="imageHeight">Height (px)</label>
+              <input id="imageHeight" type="number" min="1" max="8000" value="1080">
+            </div>
+          </div>
+
+          <label class="checkline">
+            <input id="keepRatio" type="checkbox" checked>
+            Keep original aspect ratio
+          </label>
+
+          <div class="field">
+            <label for="imageFormat">Export format</label>
+            <select id="imageFormat">
+              <option value="image/png">PNG</option>
+              <option value="image/jpeg">JPEG</option>
+              <option value="image/webp">WebP</option>
+            </select>
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-primary" id="resizeImage">Resize image</button>
+            <button class="btn" id="downloadImage" disabled>Download image</button>
+          </div>
+          <div class="status" id="imageStatus" role="status" aria-live="polite">Choose an image to begin.</div>
+        </article>
+
+        <article class="tool-card">
+          <div class="tool-icon">📐</div>
+          <h3>Common Dimensions</h3>
+          <p class="description">Choose a preset for popular social media and video formats.</p>
+
+          <div class="field">
+            <label for="imagePreset">Image size preset</label>
+            <select id="imagePreset">
+              <option value="1080,1080">Square post — 1080 × 1080</option>
+              <option value="1080,1350">Instagram portrait — 1080 × 1350</option>
+              <option value="1080,1920">Story / Reel cover — 1080 × 1920</option>
+              <option value="1280,720">YouTube thumbnail — 1280 × 720</option>
+              <option value="1920,1080">Full HD landscape — 1920 × 1080</option>
+              <option value="custom">Custom dimensions</option>
+            </select>
+          </div>
+
+          <div class="output-box">
+            <strong>Quick guide</strong><br><br>
+            Instagram square: 1:1<br>
+            Instagram portrait: 4:5<br>
+            Story / Reel: 9:16<br>
+            YouTube thumbnail: 16:9
+          </div>
+
+          <div class="notice">
+            Resizing changes image dimensions. It does not guarantee improved image quality. Enlarging a small image can make it look softer.
+          </div>
+          <div class="actions">
+            <button class="btn btn-soft" id="applyPreset">Apply selected preset</button>
+          </div>
+          <div class="status" id="presetStatus" role="status" aria-live="polite"></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="text-tools">
+      <div class="section-heading">
+        <h2>Text Toolkit</h2>
+        <p>Clean, transform, count and copy text without installing anything.</p>
+      </div>
+
+      <article class="tool-card">
+        <div class="field">
+          <label for="textInput">Enter or paste your text</label>
+          <textarea id="textInput" placeholder="Start writing or paste your text here..."></textarea>
+        </div>
+
+        <div class="three-cols">
+          <div class="stat"><strong id="wordCount">0</strong><span>Words</span></div>
+          <div class="stat"><strong id="charCount">0</strong><span>Characters</span></div>
+          <div class="stat"><strong id="lineCount">0</strong><span>Lines</span></div>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-primary" id="upperText">UPPERCASE</button>
+          <button class="btn" id="lowerText">lowercase</button>
+          <button class="btn" id="titleText">Title Case</button>
+          <button class="btn" id="cleanText">Clean spaces</button>
+          <button class="btn" id="copyText">Copy text</button>
+          <button class="btn btn-danger" id="clearText">Clear</button>
+        </div>
+        <div class="status" id="textStatus" role="status" aria-live="polite">Your text stays in your browser.</div>
+      </article>
+    </section>
+
+    <section class="section" id="data-tools">
+      <div class="section-heading">
+        <h2>JSON &amp; Data Formatter</h2>
+        <p>Format JSON so it is easier to read, or minify it for compact storage.</p>
+      </div>
+
+      <article class="tool-card">
+        <div class="field">
+          <label for="jsonInput">JSON input</label>
+          <textarea id="jsonInput" style="min-height:210px;font-family:Consolas,monospace" spellcheck="false" placeholder='{"name":"SkillBridge","free":true}'></textarea>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-primary" id="formatJson">Format JSON</button>
+          <button class="btn" id="minifyJson">Minify JSON</button>
+          <button class="btn" id="validateJson">Validate JSON</button>
+          <button class="btn" id="copyJson">Copy result</button>
+          <button class="btn btn-danger" id="clearJson">Clear</button>
+        </div>
+
+        <div class="status" id="jsonStatus" role="status" aria-live="polite">Paste JSON to get started.</div>
+      </article>
+    </section>
+
+    <section class="section" id="tutorials">
+      <div class="section-heading">
+        <h2>Learn &amp; Improve</h2>
+        <p>Video tutorials to help you develop your creative skills.</p>
+      </div>
+
+      <div class="tutorial-grid">
+        <article class="tutorial">
+          <div class="play">▶️</div>
+          <h3>Video Editing Tutorial</h3>
+          <p>Learn the basics of editing videos and improving your workflow.</p>
+          <a class="btn btn-soft" href="https://www.youtube.com/watch?v=y7Ci_H9bYEk" target="_blank" rel="noopener noreferrer">Watch tutorial ↗</a>
+        </article>
+
+        <article class="tutorial">
+          <div class="play">🎨</div>
+          <h3>Thumbnail Design</h3>
+          <p>Explore thumbnail design techniques for your creative projects.</p>
+          <a class="btn btn-soft" href="https://www.youtube.com/watch?v=4X3efQiR6tA" target="_blank" rel="noopener noreferrer">Watch tutorial ↗</a>
+        </article>
+
+        <article class="tutorial">
+          <div class="play">🧩</div>
+          <h3>Data Formatting</h3>
+          <p>Learn about organizing and formatting data.</p>
+          <a class="btn btn-soft" href="https://www.youtube.com/watch?v=LgXzzu68j7M" target="_blank" rel="noopener noreferrer">Watch tutorial ↗</a>
+        </article>
+      </div>
+    </section>
+  </div>
 </main>
 
 <footer>
-  <strong>SkillBridge</strong><br>
-  Create. Learn. Improve.<br>
-  <span class="status">Free browser-based tools. Your selected files are processed locally.</span>
+  <strong>SkillBridge</strong> — Create Without Limits.
+  <br>Free browser-based tools for your creative workflow.
+  <br><span id="footerYear"></span>
 </footer>
 
 <script>
 "use strict";
 
-/* VIDEO STUDIO */
-const videoInput = document.getElementById("video-upload");
-const video = document.getElementById("video");
-const videoPlaceholder = document.getElementById("video-placeholder");
-const videoStatus = document.getElementById("video-status");
-const trimStart = document.getElementById("trim-start");
-const trimEnd = document.getElementById("trim-end");
-const speedSelect = document.getElementById("playback-speed");
-const aspectSelect = document.getElementById("aspect-ratio");
-let videoURL = null;
-let clipEnd = null;
-let recording = false;
+const $ = id => document.getElementById(id);
+
+function setStatus(id, message, type = "") {
+  const element = $(id);
+  element.textContent = message;
+  element.className = "status" + (type ? " " + type : "");
+}
+
+function safeFilename(name, suffix, extension) {
+  const base = (name || "file").replace(/\.[^/.]+$/, "")
+    .replace(/[^\w-]+/g, "_").slice(0, 70) || "file";
+  return base + suffix + "." + extension;
+}
+
+function downloadBlob(blob, filename) {
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 30000);
+}
+
+function canvasToBlob(canvas, type, quality) {
+  return new Promise((resolve, reject) => {
+    canvas.toBlob(blob => {
+      if (blob) resolve(blob);
+      else reject(new Error("The browser could not create the image."));
+    }, type, quality);
+  });
+}
+
+$("footerYear").textContent = "© " + new Date().getFullYear() + " SkillBridge";
+
+/* ---------------- VIDEO STUDIO ---------------- */
+
+const videoInput = $("videoFile");
+const videoPreview = $("videoPreview");
+const trimStart = $("trimStart");
+const trimEnd = $("trimEnd");
+const playbackSpeed = $("playbackSpeed");
+
+let videoElement = null;
+let videoObjectURL = null;
+let activeExport = null;
+let exportBusy = false;
+let previewingTrim = false;
+
+function getVideoRange() {
+  if (!videoElement || !Number.isFinite(videoElement.duration)) {
+    throw new Error("Choose a valid video first.");
+  }
+
+  const duration = videoElement.duration;
+  const start = Number(trimStart.value);
+  const end = Number(trimEnd.value);
+
+  if (!Number.isFinite(start) || !Number.isFinite(end) ||
+      start < 0 || end <= start || start >= duration) {
+    throw new Error("Enter a valid start and end time within the video duration.");
+  }
+
+  return { start, end: Math.min(end, duration), duration };
+}
+
+function updateVideoDuration() {
+  if (!videoElement || !Number.isFinite(videoElement.duration)) return;
+  trimStart.max = videoElement.duration;
+  trimEnd.max = videoElement.duration;
+  trimEnd.value = videoElement.duration.toFixed(1);
+  trimStart.value = "0";
+  videoElement.playbackRate = Number(playbackSpeed.value);
+  setStatus("videoStatus", "Video loaded. Duration: " +
+    videoElement.duration.toFixed(1) + " seconds.", "success");
+  refreshEnhancerPreview();
+}
 
 videoInput.addEventListener("change", () => {
   const file = videoInput.files && videoInput.files[0];
   if (!file) return;
-  if (videoURL) URL.revokeObjectURL(videoURL);
-  videoURL = URL.createObjectURL(file);
-  video.src = videoURL;
-  video.load();
-  clipEnd = null;
-  videoPlaceholder.hidden = true;
-  videoStatus.textContent = "Loaded: " + file.name;
-});
 
-video.addEventListener("loadedmetadata", () => {
-  trimStart.max = video.duration;
-  trimEnd.max = video.duration;
-  trimEnd.value = video.duration.toFixed(1);
-  videoStatus.textContent = "Video duration: " + video.duration.toFixed(2) + " seconds.";
-});
-
-speedSelect.addEventListener("change", () => {
-  video.playbackRate = Number(speedSelect.value);
-});
-
-aspectSelect.addEventListener("change", () => {
-  video.style.aspectRatio = aspectSelect.value === "auto" ? "auto" : aspectSelect.value;
-  video.style.objectFit = aspectSelect.value === "auto" ? "contain" : "contain";
-});
-
-document.getElementById("preview-trim").addEventListener("click", () => {
-  if (!videoURL) return alert("Please import a video first.");
-  const start = Number(trimStart.value);
-  const end = Number(trimEnd.value);
-  if (start < 0 || end <= start || end > video.duration) {
-    return alert("Enter a valid trim range within the video duration.");
+  if (!file.type.startsWith("video/")) {
+    setStatus("videoStatus", "Please select a valid video file.", "error");
+    return;
   }
-  clipEnd = end;
-  video.currentTime = start;
-  video.playbackRate = Number(speedSelect.value);
-  video.play().catch(() => {
-    videoStatus.textContent = "Press Play in the video controls to preview.";
+
+  stopCurrentExport();
+  previewingTrim = false;
+
+  if (videoObjectURL) URL.revokeObjectURL(videoObjectURL);
+  videoObjectURL = URL.createObjectURL(file);
+
+  videoPreview.replaceChildren();
+  videoElement = document.createElement("video");
+  videoElement.id = "mainVideo";
+  videoElement.controls = true;
+  videoElement.preload = "metadata";
+  videoElement.playsInline = true;
+  videoElement.style.filter = "none";
+  videoPreview.appendChild(videoElement);
+
+  videoElement.addEventListener("loadedmetadata", updateVideoDuration, { once: true });
+  videoElement.addEventListener("error", () => {
+    setStatus("videoStatus", "This video could not be opened. Try a different file format.", "error");
+  }, { once: true });
+
+  videoElement.addEventListener("timeupdate", () => {
+    if (!previewingTrim) return;
+    const end = Number(trimEnd.value);
+    if (videoElement.currentTime >= end) {
+      videoElement.pause();
+      previewingTrim = false;
+    }
+  });
+
+  videoElement.src = videoObjectURL;
+  videoElement.load();
+
+  setStatus("videoStatus", "Loading video metadata...");
+  setStatus("enhancerStatus", "Video selected. Adjust settings and export when ready.");
+  refreshEnhancerPreview();
+});
+
+playbackSpeed.addEventListener("change", () => {
+  if (videoElement) videoElement.playbackRate = Number(playbackSpeed.value);
+});
+
+$("previewTrim").addEventListener("click", async () => {
+  try {
+    const range = getVideoRange();
+    videoElement.pause();
+    previewingTrim = true;
+    videoElement.currentTime = range.start;
+    videoElement.playbackRate = Number(playbackSpeed.value);
+    await new Promise(resolve => {
+      if (Math.abs(videoElement.currentTime - range.start) < 0.05) {
+        resolve();
+      } else {
+        videoElement.addEventListener("seeked", resolve, { once: true });
+      }
+    });
+    await videoElement.play();
+    setStatus("videoStatus", "Previewing selected section.");
+  } catch (error) {
+    setStatus("videoStatus", error.message || "Unable to preview this section.", "error");
+  }
+});
+
+$("resetVideo").addEventListener("click", () => {
+  if (!videoElement) return;
+  videoElement.pause();
+  previewingTrim = false;
+  trimStart.value = "0";
+  trimEnd.value = videoElement.duration.toFixed(1);
+  playbackSpeed.value = "1";
+  videoElement.playbackRate = 1;
+  videoElement.currentTime = 0;
+  setStatus("videoStatus", "Video settings reset.");
+});
+
+function getFilterString() {
+  return "brightness(" + $("brightness").value + "%) " +
+    "contrast(" + $("contrast").value + "%) " +
+    "saturate(" + $("saturation").value + "%)";
+}
+
+function refreshEnhancerPreview() {
+  const preview = $("enhancerPreview");
+  if (!videoElement) {
+    preview.replaceChildren();
+    const note = document.createElement("div");
+    note.className = "placeholder";
+    note.textContent = "Load a video in the Video Editor to use the enhancer.";
+    preview.appendChild(note);
+    return;
+  }
+
+  preview.replaceChildren();
+  const clone = document.createElement("video");
+  clone.muted = true;
+  clone.controls = true;
+  clone.playsInline = true;
+  clone.preload = "metadata";
+  clone.src = videoObjectURL;
+  clone.style.filter = getFilterString();
+  preview.appendChild(clone);
+}
+
+["brightness", "contrast", "saturation"].forEach(id => {
+  $(id).addEventListener("input", () => {
+    $(id + "Value").textContent = $(id).value + "%";
+    const previewVideo = $("enhancerPreview").querySelector("video");
+    if (previewVideo) previewVideo.style.filter = getFilterString();
   });
 });
 
-video.addEventListener("timeupdate", () => {
-  if (clipEnd !== null && video.currentTime >= clipEnd && !video.paused) {
-    video.pause();
-    clipEnd = null;
-  }
+$("resetEnhancer").addEventListener("click", () => {
+  $("brightness").value = 100;
+  $("contrast").value = 100;
+  $("saturation").value = 100;
+  ["brightness", "contrast", "saturation"].forEach(id => {
+    $(id + "Value").textContent = "100%";
+  });
+  const previewVideo = $("enhancerPreview").querySelector("video");
+  if (previewVideo) previewVideo.style.filter = getFilterString();
+  setStatus("enhancerStatus", "Enhancement settings reset.");
 });
 
-document.getElementById("reset-video").addEventListener("click", () => {
-  if (!videoURL) return alert("Import a video first.");
-  clipEnd = null;
-  video.pause();
-  video.currentTime = 0;
-  video.playbackRate = 1;
-  speedSelect.value = "1";
-  aspectSelect.value = "auto";
-  video.style.aspectRatio = "auto";
-});
-
-document.getElementById("export-video").addEventListener("click", async () => {
-  if (!videoURL) return alert("Please import a video first.");
-  if (recording) return;
-  if (!("MediaRecorder" in window) || !video.captureStream) {
-    return alert("This browser does not support in-browser video recording. Try a recent version of Chrome or Edge.");
-  }
-
-  const start = Number(trimStart.value);
-  const end = Number(trimEnd.value);
-  if (start < 0 || end <= start || end > video.duration) {
-    return alert("Enter a valid trim range before exporting.");
-  }
-
-  const stream = video.captureStream();
-  let mime = "";
-  if (MediaRecorder.isTypeSupported("video/webm;codecs=vp9")) mime = "video/webm;codecs=vp9";
-  else if (MediaRecorder.isTypeSupported("video/webm;codecs=vp8")) mime = "video/webm;codecs=vp8";
-  else if (MediaRecorder.isTypeSupported("video/webm")) mime = "video/webm";
-  else return alert("No supported WebM recording format was found in this browser.");
-
-  let recorder;
+function stopCurrentExport() {
+  if (!activeExport) return;
+  const job = activeExport;
+  job.cancelled = true;
   try {
-    recorder = new MediaRecorder(stream, { mimeType: mime });
-  } catch (error) {
-    return alert("Could not start recording in this browser.");
+    if (job.video) job.video.pause();
+    if (job.recorder && job.recorder.state !== "inactive") job.recorder.stop();
+  } catch (_) {}
+  if (job.cleanup) job.cleanup();
+}
+
+function setExportState(isBusy) {
+  exportBusy = isBusy;
+  $("exportVideo").disabled = isBusy;
+  $("enhanceExport").disabled = isBusy;
+  $("stopExport").disabled = !isBusy;
+}
+
+$("stopExport").addEventListener("click", () => {
+  if (activeExport) {
+    activeExport.cancelled = true;
+    try {
+      activeExport.video.pause();
+      if (activeExport.recorder.state !== "inactive") activeExport.recorder.stop();
+    } catch (_) {}
+    setStatus("videoStatus", "Export stopped.");
+    setStatus("enhancerStatus", "Export stopped.");
+  }
+});
+
+$("exportVideo").addEventListener("click", () => startVideoExport(false));
+$("enhanceExport").addEventListener("click", () => startVideoExport(true));
+
+async function startVideoExport(useEnhancer) {
+  if (exportBusy) {
+    setStatus(useEnhancer ? "enhancerStatus" : "videoStatus",
+      "An export is already running.", "error");
+    return;
   }
 
-  const chunks = [];
-  recorder.ondataavailable = event => {
-    if (event.data && event.data.size > 0) chunks.push(event.data);
-  };
-  recorder.onerror = () => {
-    recording = false;
-    videoStatus.textContent = "Recording failed. Try another video or browser.";
-  };
-  recorder.onstop = () => {
-    recording = false;
-    stream.getTracks().forEach(track => track.stop());
-    if (!chunks.length) {
-      videoStatus.textContent = "No video data was recorded.";
-      return;
-    }
-    const blob = new Blob(chunks, { type: mime });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "skillbridge-clip.webm";
-    link.click();
-    setTimeout(() => URL.revokeObjectURL(url), 30000);
-    videoStatus.textContent = "Export finished. Saved as a WebM recording.";
-  };
+  let range;
+  try {
+    range = getVideoRange();
+  } catch (error) {
+    setStatus(useEnhancer ? "enhancerStatus" : "videoStatus",
+      error.message, "error");
+    return;
+  }
 
-  recording = true;
-  videoStatus.textContent = "Recording selected section in real time. Please wait...";
-  video.pause();
-  video.currentTime = start;
-  video.playbackRate = Number(speedSelect.value);
+  if (!("MediaRecorder" in window) || !HTMLCanvasElement.prototype.captureStream) {
+    setStatus(useEnhancer ? "enhancerStatus" : "videoStatus",
+      "Video export is not supported by this browser. Try an up-to-date desktop version of Chrome or Edge.",
+      "error");
+    return;
+  }
 
-  video.onseeked = async function beginRecording() {
-    video.onseeked = null;
-    try {
-      recorder.start();
-      await video.play();
-    } catch (error) {
-      if (recorder.state !== "inactive") recorder.stop();
-      recording = false;
-      videoStatus.textContent = "Playback could not start. Check browser permissions and try again.";
-      return;
+  const source = videoElement;
+  const sourceFile = videoInput.files && videoInput.files[0];
+  const originalRate = source.playbackRate;
+  const wasPaused = source.paused;
+  source.pause();
+
+  const job = {
+    cancelled: false,
+    recorder: null,
+    video: source,
+    cleanup: null,
+    raf: 0
+  };
+  activeExport = job;
+  setExportState(true);
+
+  let canvasStream = null;
+  let combinedStream = null;
+  let audioTracks = [];
+  let chunks = [];
+  let completed = false;
+  let failed = false;
+
+  const oldTime = source.currentTime;
+  const oldFilter = source.style.filter;
+
+  function cleanup() {
+    if (job.raf) cancelAnimationFrame(job.raf);
+    source.pause();
+    source.playbackRate = originalRate;
+    source.style.filter = oldFilter;
+
+    if (canvasStream) canvasStream.getTracks().forEach(track => track.stop());
+    if (combinedStream) combinedStream.getTracks().forEach(track => track.stop());
+
+    if (activeExport === job) activeExport = null;
+    setExportState(false);
+  }
+  job.cleanup = cleanup;
+
+  try {
+    const maxSide = $("qualityMode").value === "original"
+      ? Math.max(source.videoWidth, source.videoHeight)
+      : Number($("qualityMode").value === "720" ? 1280 : 1920);
+
+    const scale = Math.min(1, maxSide / Math.max(source.videoWidth, source.videoHeight));
+    const upscale = $("qualityMode").value !== "original";
+    const factor = upscale
+      ? maxSide / Math.max(source.videoWidth, source.videoHeight)
+      : 1;
+
+    const width = Math.max(2, Math.round(source.videoWidth * factor / 2) * 2);
+    const height = Math.max(2, Math.round(source.videoHeight * factor / 2) * 2);
+
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext("2d", { alpha: false });
+    if (!ctx) throw new Error("Could not create the video processing canvas.");
+
+    const filter = useEnhancer ? getFilterString() : "none";
+    canvasStream = canvas.captureStream(30);
+
+    if (typeof source.captureStream === "function") {
+      try {
+        const sourceStream = source.captureStream();
+        audioTracks = sourceStream.getAudioTracks();
+      } catch (_) {
+        audioTracks = [];
+      }
     }
-    const stopAtEnd = () => {
-      if (video.currentTime >= end && recorder.state !== "inactive") {
-        video.pause();
-        recorder.stop();
-        video.removeEventListener("timeupdate", stopAtEnd);
+
+    combinedStream = new MediaStream([
+      ...canvasStream.getVideoTracks(),
+      ...audioTracks
+    ]);
+
+    const mimeType = MediaRecorder.isTypeSupported("video/webm;codecs=vp9")
+      ? "video/webm;codecs=vp9"
+      : "video/webm";
+
+    const recorder = new MediaRecorder(combinedStream, { mimeType });
+    job.recorder = recorder;
+
+    recorder.ondataavailable = event => {
+      if (event.data && event.data.size > 0) chunks.push(event.data);
+    };
+
+    recorder.onerror = () => {
+      failed = true;
+      job.cancelled = true;
+      cleanup();
+      setStatus(useEnhancer ? "enhancerStatus" : "videoStatus",
+        "Recording failed. Try a shorter video or a smaller resolution.", "error");
+    };
+
+    recorder.onstop = () => {
+      const wasCancelled = job.cancelled || failed;
+      cleanup();
+
+      if (!wasCancelled && completed && chunks.length) {
+        const blob = new Blob(chunks, { type: "video/webm" });
+        const suffix = useEnhancer ? "_enhanced" : "_edited";
+        downloadBlob(blob, safeFilename(sourceFile && sourceFile.name, suffix, "webm"));
+        setStatus(useEnhancer ? "enhancerStatus" : "videoStatus",
+          "Export complete. Your WebM video has been downloaded.", "success");
+        if (useEnhancer) {
+          setStatus("videoStatus", "Video export complete.", "success");
+        }
+      } else if (!wasCancelled) {
+        setStatus(useEnhancer ? "enhancerStatus" : "videoStatus",
+          "No video data was exported. Please try again.", "error");
+      }
+
+      if (!wasPaused && !wasCancelled) {
+        source.currentTime = oldTime;
+        source.playbackRate = originalRate;
+        source.play().catch(() => {});
       }
     };
-    video.addEventListener("timeupdate", stopAtEnd);
-    recorder.addEventListener("stop", () => video.removeEventListener("timeupdate", stopAtEnd), { once: true });
-  };
-  video.currentTime = start;
-});
 
-/* IMAGE RESIZER */
-const imageInput = document.getElementById("image-upload");
-const imagePreview = document.getElementById("image-preview");
-const imageStatus = document.getElementById("image-status");
-let selectedImage = null;
-let imageURL = null;
-let originalWidth = 0;
-let originalHeight = 0;
+    // Wait for the selected start frame before recording.
+    source.currentTime = range.start;
+    await new Promise((resolve, reject) => {
+      if (job.cancelled) return reject(new Error("Export cancelled."));
+      if (Math.abs(source.currentTime - range.start) < 0.03 && source.readyState >= 2) {
+        return resolve();
+      }
+
+      const timeout = setTimeout(() => reject(new Error("Timed out seeking to the start frame.")), 12000);
+      source.addEventListener("seeked", () => {
+        clearTimeout(timeout);
+        resolve();
+      }, { once: true });
+    });
+
+    if (job.cancelled) return;
+    recorder.start(250);
+    source.playbackRate = Number(playbackSpeed.value);
+    source.style.filter = "none";
+
+    let lastStatusUpdate = 0;
+    function drawFrame(now) {
+      if (job.cancelled || !activeExport || activeExport !== job) return;
+
+      ctx.filter = filter;
+      try {
+        ctx.drawImage(source, 0, 0, width, height);
+      } catch (_) {}
+
+      const elapsed = Math.max(0, source.currentTime - range.start);
+      const total = Math.max(0.1, range.end - range.start);
+
+      if (now - lastStatusUpdate > 500) {
+        const pct = Math.min(100, Math.round(elapsed / total * 100));
+        setStatus(useEnhancer ? "enhancerStatus" : "videoStatus",
+          "Processing video: " + pct + "%");
+        lastStatusUpdate = now;
+      }
+
+      if (source.currentTime >= range.end || source.ended) {
+        completed = true;
+        source.pause();
+        if (recorder.state !== "inactive") recorder.stop();
+        return;
+      }
+
+      job.raf = requestAnimationFrame(drawFrame);
+    }
+
+    await source.play();
+    job.raf = requestAnimationFrame(drawFrame);
+
+  } catch (error) {
+    failed = true;
+    job.cancelled = true;
+    try {
+      if (job.recorder && job.recorder.state !== "inactive") {
+        job.recorder.stop();
+      } else {
+        cleanup();
+      }
+    } catch (_) {
+      cleanup();
+    }
+
+    const message = error && error.message ? error.message : "Unable to process this video.";
+    setStatus(useEnhancer ? "enhancerStatus" : "videoStatus", message, "error");
+  }
+}
+
+/* ---------------- IMAGE RESIZER ---------------- */
+
+const imageInput = $("imageFile");
+let sourceImage = null;
+let imageObjectURL = null;
+let resizedBlob = null;
+let resizedName = "resized_image.png";
+let ratioUpdating = false;
 
 imageInput.addEventListener("change", () => {
   const file = imageInput.files && imageInput.files[0];
   if (!file) return;
-  if (!file.type.startsWith("image/")) return alert("Choose a valid image.");
-  selectedImage = file;
-  if (imageURL) URL.revokeObjectURL(imageURL);
-  imageURL = URL.createObjectURL(file);
-  const img = new Image();
-  img.onload = () => {
-    originalWidth = img.naturalWidth;
-    originalHeight = img.naturalHeight;
-    document.getElementById("image-width").value = originalWidth;
-    document.getElementById("image-height").value = originalHeight;
-    imagePreview.src = imageURL;
-    imagePreview.hidden = false;
-    imageStatus.textContent = "Loaded " + file.name + " (" + originalWidth + " × " + originalHeight + ").";
-  };
-  img.onerror = () => alert("This image could not be opened.");
-  img.src = imageURL;
-});
 
-document.getElementById("image-width").addEventListener("input", () => {
-  if (!selectedImage || !document.getElementById("keep-ratio").checked) return;
-  const w = Number(document.getElementById("image-width").value);
-  if (w > 0) document.getElementById("image-height").value = Math.round(w * originalHeight / originalWidth);
-});
-document.getElementById("image-height").addEventListener("input", () => {
-  if (!selectedImage || !document.getElementById("keep-ratio").checked) return;
-  const h = Number(document.getElementById("image-height").value);
-  if (h > 0) document.getElementById("image-width").value = Math.round(h * originalWidth / originalHeight);
-});
-
-document.getElementById("resize-image").addEventListener("click", () => {
-  if (!selectedImage) return alert("Choose an image first.");
-  const width = Number(document.getElementById("image-width").value);
-  const height = Number(document.getElementById("image-height").value);
-  const format = document.getElementById("image-format").value;
-  const quality = Number(document.getElementById("image-quality").value);
-  if (!Number.isInteger(width) || !Number.isInteger(height) || width < 1 || height < 1 || width > 12000 || height > 12000) {
-    return alert("Width and height must be between 1 and 12000 pixels.");
+  if (!file.type.startsWith("image/")) {
+    setStatus("imageStatus", "Please choose a valid image file.", "error");
+    return;
   }
-  const img = new Image();
-  img.onload = () => {
-    const canvas = document.createElement("canvas");
-    canvas.width = width;
-    canvas.height = height;
-    const ctx = canvas.getContext("2d");
-    if (format === "image/jpeg") {
-      ctx.fillStyle = "#ffffff";
-      ctx.fillRect(0, 0, width, height);
-    }
-    ctx.drawImage(img, 0, 0, width, height);
-    canvas.toBlob(blob => {
-      if (!blob) return alert("Image export failed. Try another format.");
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      const ext = format === "image/jpeg" ? "jpg" : format === "image/webp" ? "webp" : "png";
-      a.href = url;
-      a.download = "skillbridge-resized." + ext;
-      a.click();
-      setTimeout(() => URL.revokeObjectURL(url), 30000);
-      imageStatus.textContent = "Resized image downloaded (" + width + " × " + height + ").";
-    }, format, quality);
+
+  if (imageObjectURL) URL.revokeObjectURL(imageObjectURL);
+  imageObjectURL = URL.createObjectURL(file);
+  sourceImage = new Image();
+
+  sourceImage.onload = () => {
+    $("imageWidth").value = sourceImage.naturalWidth;
+    $("imageHeight").value = sourceImage.naturalHeight;
+
+    const preview = $("imagePreview");
+    preview.replaceChildren();
+    const img = document.createElement("img");
+    img.src = imageObjectURL;
+    img.alt = "Original image preview";
+    preview.appendChild(img);
+
+    resizedBlob = null;
+    $("downloadImage").disabled = true;
+    setStatus("imageStatus", "Image loaded: " +
+      sourceImage.naturalWidth + " × " + sourceImage.naturalHeight + " px.", "success");
   };
-  img.onerror = () => alert("Could not load the selected image.");
-  img.src = imageURL;
+
+  sourceImage.onerror = () => {
+    setStatus("imageStatus", "This image could not be opened.", "error");
+  };
+  sourceImage.src = imageObjectURL;
 });
 
-/* TEXT TOOLKIT */
-const textInput = document.getElementById("text-input");
-const textStats = document.getElementById("text-stats");
+$("imageWidth").addEventListener("input", () => {
+  if (!sourceImage || !$("keepRatio").checked || ratioUpdating) return;
+  ratioUpdating = true;
+  const w = Number($("imageWidth").value);
+  if (w > 0) $("imageHeight").value =
+    Math.round(w * sourceImage.naturalHeight / sourceImage.naturalWidth);
+  ratioUpdating = false;
+});
 
-function updateTextStats() {
-  const value = textInput.value;
-  const trimmed = value.trim();
-  const words = trimmed ? trimmed.split(/\s+/).length : 0;
-  textStats.textContent = words + " words · " + value.length +
-    " characters · " + value.replace(/\s/g, "").length + " characters without spaces";
+$("imageHeight").addEventListener("input", () => {
+  if (!sourceImage || !$("keepRatio").checked || ratioUpdating) return;
+  ratioUpdating = true;
+  const h = Number($("imageHeight").value);
+  if (h > 0) $("imageWidth").value =
+    Math.round(h * sourceImage.naturalWidth / sourceImage.naturalHeight);
+  ratioUpdating = false;
+});
+
+$("applyPreset").addEventListener("click", () => {
+  const value = $("imagePreset").value;
+  if (value === "custom") {
+    setStatus("presetStatus", "Enter your own width and height in the Image Resizer.");
+    return;
+  }
+  const [w, h] = value.split(",").map(Number);
+  $("imageWidth").value = w;
+  $("imageHeight").value = h;
+  $("keepRatio").checked = false;
+  setStatus("presetStatus", "Preset applied: " + w + " × " + h + " px.", "success");
+});
+
+$("imagePreset").addEventListener("change", () => {
+  if ($("imagePreset").value !== "custom") {
+    const [w, h] = $("imagePreset").value.split(",").map(Number);
+    $("imageWidth").value = w;
+    $("imageHeight").value = h;
+  }
+});
+
+$("resizeImage").addEventListener("click", async () => {
+  if (!sourceImage || !sourceImage.complete || !sourceImage.naturalWidth) {
+    setStatus("imageStatus", "Choose an image first.", "error");
+    return;
+  }
+
+  const width = Number($("imageWidth").value);
+  const height = Number($("imageHeight").value);
+
+  if (!Number.isInteger(width) || !Number.isInteger(height) ||
+      width < 1 || height < 1 || width > 8000 || height > 8000) {
+    setStatus("imageStatus", "Width and height must be whole numbers between 1 and 8000.", "error");
+    return;
+  }
+
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+
+  if (!ctx) {
+    setStatus("imageStatus", "Could not create an image canvas.", "error");
+    return;
+  }
+
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = "high";
+  ctx.drawImage(sourceImage, 0, 0, width, height);
+
+  try {
+    const format = $("imageFormat").value;
+    resizedBlob = await canvasToBlob(canvas, format, 0.92);
+    const extension = format === "image/jpeg" ? "jpg" :
+      format === "image/webp" ? "webp" : "png";
+    resizedName = safeFilename(imageInput.files[0].name, "_resized", extension);
+
+    const preview = $("imagePreview");
+    preview.replaceChildren();
+    const img = document.createElement("img");
+    img.src = URL.createObjectURL(resizedBlob);
+    img.alt = "Resized image preview";
+    preview.appendChild(img);
+
+    $("downloadImage").disabled = false;
+    setStatus("imageStatus", "Ready: " + width + " × " + height +
+      " px. File size: " + (resizedBlob.size / 1024).toFixed(1) + " KB.", "success");
+  } catch (error) {
+    setStatus("imageStatus", error.message || "Image export failed.", "error");
+  }
+});
+
+$("downloadImage").addEventListener("click", () => {
+  if (!resizedBlob) return;
+  downloadBlob(resizedBlob, resizedName);
+});
+
+/* ---------------- TEXT TOOLKIT ---------------- */
+
+const textInput = $("textInput");
+
+function updateTextCounts() {
+  const text = textInput.value;
+  const trimmed = text.trim();
+  $("wordCount").textContent = trimmed ? trimmed.split(/\s+/).length : 0;
+  $("charCount").textContent = text.length;
+  $("lineCount").textContent = text.length ? text.split(/\r\n|\r|\n/).length : 0;
 }
-textInput.addEventListener("input", updateTextStats);
 
-document.querySelectorAll("[data-case]").forEach(button => {
-  button.addEventListener("click", () => {
-    const mode = button.dataset.case;
-    if (mode === "upper") textInput.value = textInput.value.toUpperCase();
-    if (mode === "lower") textInput.value = textInput.value.toLowerCase();
-    if (mode === "title") {
-      textInput.value = textInput.value.toLowerCase().replace(/\b\w/g, char => char.toUpperCase());
-    }
-    updateTextStats();
-  });
+textInput.addEventListener("input", updateTextCounts);
+
+$("upperText").addEventListener("click", () => {
+  textInput.value = textInput.value.toUpperCase();
+  updateTextCounts();
 });
-document.getElementById("clean-text").addEventListener("click", () => {
-  textInput.value = textInput.value.split("\n").map(line => line.trim().replace(/[ \t]+/g, " ")).join("\n").trim();
-  updateTextStats();
+
+$("lowerText").addEventListener("click", () => {
+  textInput.value = textInput.value.toLowerCase();
+  updateTextCounts();
 });
-document.getElementById("copy-text").addEventListener("click", async () => {
+
+$("titleText").addEventListener("click", () => {
+  textInput.value = textInput.value.toLowerCase().replace(/\b([a-z])/g, char => char.toUpperCase());
+  updateTextCounts();
+});
+
+$("cleanText").addEventListener("click", () => {
+  textInput.value = textInput.value
+    .split(/\r\n|\r|\n/)
+    .map(line => line.replace(/\s+/g, " ").trim())
+    .join("\n")
+    .trim();
+  updateTextCounts();
+  setStatus("textStatus", "Extra spaces cleaned.", "success");
+});
+
+$("copyText").addEventListener("click", async () => {
   try {
     await navigator.clipboard.writeText(textInput.value);
-    alert("Text copied.");
-  } catch (error) {
+    setStatus("textStatus", "Text copied to clipboard.", "success");
+  } catch (_) {
+    textInput.focus();
     textInput.select();
-    alert("If copying did not happen automatically, press Ctrl+C.");
+    setStatus("textStatus", "Text selected. Press Ctrl+C to copy it.");
   }
 });
-document.getElementById("clear-text").addEventListener("click", () => {
+
+$("clearText").addEventListener("click", () => {
   textInput.value = "";
-  updateTextStats();
+  updateTextCounts();
+  setStatus("textStatus", "Text cleared.");
 });
 
-/* JSON FORMATTER */
-const jsonInput = document.getElementById("json-input");
-const jsonOutput = document.getElementById("json-output");
-const jsonStatus = document.getElementById("json-status");
+/* ---------------- JSON FORMATTER ---------------- */
 
-function processJSON(mode) {
-  try {
-    const parsed = JSON.parse(jsonInput.value);
-    if (mode === "format") jsonOutput.textContent = JSON.stringify(parsed, null, 2);
-    else if (mode === "minify") jsonOutput.textContent = JSON.stringify(parsed);
-    else jsonOutput.textContent = JSON.stringify(parsed, null, 2);
-    jsonStatus.textContent = "Valid JSON. " + (mode === "minify" ? "Minified successfully." : "Validation successful.");
-  } catch (error) {
-    jsonOutput.textContent = "";
-    jsonStatus.textContent = "Invalid JSON: " + error.message;
-  }
+function readJSON() {
+  const raw = $("jsonInput").value.trim();
+  if (!raw) throw new Error("Paste JSON into the input first.");
+  return JSON.parse(raw);
 }
-document.getElementById("format-json").addEventListener("click", () => processJSON("format"));
-document.getElementById("minify-json").addEventListener("click", () => processJSON("minify"));
-document.getElementById("validate-json").addEventListener("click", () => processJSON("validate"));
-document.getElementById("copy-json").addEventListener("click", async () => {
-  const value = jsonOutput.textContent;
-  if (!value) return alert("There is no result to copy.");
+
+$("formatJson").addEventListener("click", () => {
+  try {
+    $("jsonInput").value = JSON.stringify(readJSON(), null, 2);
+    setStatus("jsonStatus", "Valid JSON formatted successfully.", "success");
+  } catch (error) {
+    setStatus("jsonStatus", "JSON error: " + error.message, "error");
+  }
+});
+
+$("minifyJson").addEventListener("click", () => {
+  try {
+    $("jsonInput").value = JSON.stringify(readJSON());
+    setStatus("jsonStatus", "JSON minified successfully.", "success");
+  } catch (error) {
+    setStatus("jsonStatus", "JSON error: " + error.message, "error");
+  }
+});
+
+$("validateJson").addEventListener("click", () => {
+  try {
+    readJSON();
+    setStatus("jsonStatus", "Your JSON is valid.", "success");
+  } catch (error) {
+    setStatus("jsonStatus", "JSON error: " + error.message, "error");
+  }
+});
+
+$("copyJson").addEventListener("click", async () => {
+  const value = $("jsonInput").value;
   try {
     await navigator.clipboard.writeText(value);
-    alert("Result copied.");
-  } catch (error) {
-    alert("Clipboard access is unavailable. Select the result and press Ctrl+C.");
+    setStatus("jsonStatus", "JSON copied to clipboard.", "success");
+  } catch (_) {
+    $("jsonInput").focus();
+    $("jsonInput").select();
+    setStatus("jsonStatus", "Text selected. Press Ctrl+C to copy it.");
   }
 });
-document.getElementById("clear-json").addEventListener("click", () => {
-  jsonInput.value = "";
-  jsonOutput.textContent = "";
-  jsonStatus.textContent = "Your result will appear below.";
+
+$("clearJson").addEventListener("click", () => {
+  $("jsonInput").value = "";
+  setStatus("jsonStatus", "JSON input cleared.");
+});
+
+/* Stop processing if the page is closed or navigated away from. */
+window.addEventListener("beforeunload", () => {
+  stopCurrentExport();
+  if (videoObjectURL) URL.revokeObjectURL(videoObjectURL);
+  if (imageObjectURL) URL.revokeObjectURL(imageObjectURL);
 });
 </script>
 </body>
